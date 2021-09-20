@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <color name="cardview_title">#FE715B</color>
+    <color name="cardview_value">#FFFFFF</color>
+    <color name="primary">#607D8B</color>
+    <color name="primary_dark">#455A64</color>
+    <color name="accent">#4CAF50</color>
+    <color name="primary_text">#212121</color>
+    <color name="virus_verde">#3EC4B1</color>
+    <color name="vermelho">#ff0000</color>
+    <color name="dashboard01">#74EBD5</color>
+    <color name="dashboard02">#9FACE6</color>
+    <color name="dashboard03">#3c4245</color>
+    <color name="dashboard04">#5a6368</color>
+    <color name="dashboard05">#3c4245</color>
+
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="Green">#7bed8d</color>
+    <color name="LightGrey">#dbe2ed</color>
+    <color name="MedGrey">#a6bcd0</color>
+    <color name="MediumGrey">#748a9d</color>
+    <color name="DarkGrey">#4e5d6a</color>
+    <color name="DarkerGrey">#404e5a</color>
+
+    <!--  Shimmer  -->
+    <color name="colorShimmer">#E4E2E2</color>
 </resources>

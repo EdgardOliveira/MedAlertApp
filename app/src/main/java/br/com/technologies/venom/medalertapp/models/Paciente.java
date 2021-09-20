@@ -7,6 +7,8 @@ import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import java.util.Date;
+
 @Entity(
         tableName = "pacientes",
         indices = {
@@ -22,10 +24,19 @@ public class Paciente {
     private String nome;
     private String convenio;
     private String acomodacao;
-    private String validade;
-    private String idade;
+    private Date validade;
+    private Integer idade;
     @Embedded(prefix = "paciente_")
     private Endereco endereco;
+
+    @NonNull
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(@NonNull String codigo) {
+        this.codigo = codigo;
+    }
 
     public String getNome() {
         return nome;
@@ -33,14 +44,6 @@ public class Paciente {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 
     public String getConvenio() {
@@ -59,19 +62,19 @@ public class Paciente {
         this.acomodacao = acomodacao;
     }
 
-    public String getValidade() {
+    public Date getValidade() {
         return validade;
     }
 
-    public void setValidade(String validade) {
+    public void setValidade(Date validade) {
         this.validade = validade;
     }
 
-    public String getIdade() {
+    public Integer getIdade() {
         return idade;
     }
 
-    public void setIdade(String idade) {
+    public void setIdade(Integer idade) {
         this.idade = idade;
     }
 
@@ -84,13 +87,12 @@ public class Paciente {
     }
 
     public Paciente() {
-
     }
 
-    @Ignore
-    public Paciente(String nome, String codigo, String convenio, String acomodacao, String validade, String idade, Endereco endereco) {
-        this.nome = nome;
+    public Paciente(@NonNull String codigo, String nome, String convenio, String acomodacao,
+                    Date validade, Integer idade, Endereco endereco) {
         this.codigo = codigo;
+        this.nome = nome;
         this.convenio = convenio;
         this.acomodacao = acomodacao;
         this.validade = validade;

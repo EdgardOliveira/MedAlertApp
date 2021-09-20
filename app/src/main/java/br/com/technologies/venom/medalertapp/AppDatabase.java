@@ -1,6 +1,6 @@
 package br.com.technologies.venom.medalertapp;
 
-import static br.com.technologies.venom.medalertapp.utis.Constantes.DATABASE_NAME;
+import static br.com.technologies.venom.medalertapp.utils.Constantes.DATABASE_NAME;
 
 import android.content.Context;
 
@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import java.util.concurrent.ExecutorService;
@@ -21,6 +22,7 @@ import br.com.technologies.venom.medalertapp.models.Empresa;
 import br.com.technologies.venom.medalertapp.models.Medicamento;
 import br.com.technologies.venom.medalertapp.models.Paciente;
 import br.com.technologies.venom.medalertapp.models.Receita;
+import br.com.technologies.venom.medalertapp.utils.Conversor;
 
 @Database(
         entities = {
@@ -33,7 +35,7 @@ import br.com.technologies.venom.medalertapp.models.Receita;
         exportSchema = false
 )
 
-//@TypeConverters(Conversor.class)
+@TypeConverters(Conversor.class)
 public abstract class AppDatabase extends RoomDatabase {
 
     // marcando a instância como volátil para garantir o acesso atômico à variável

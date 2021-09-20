@@ -1,9 +1,18 @@
 package br.com.technologies.venom.medalertapp.models;
 
 public class Medico {
+    private Long id;
     private String nome;
     private String crm;
     private String especialidade;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -32,7 +41,8 @@ public class Medico {
     public Medico() {
     }
 
-    public Medico(String nome, String crm, String especialidade) {
+    public Medico(Long id, String nome, String crm, String especialidade) {
+        this.id = id;
         this.nome = nome;
         this.crm = crm;
         this.especialidade = especialidade;

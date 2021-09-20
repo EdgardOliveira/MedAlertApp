@@ -15,7 +15,7 @@ import androidx.room.PrimaryKey;
 )
 public class Medicamento {
     @PrimaryKey
-    private Integer id;
+    private Long id;
     private String uso;
     private String tratamento;
     private String formula;
@@ -26,11 +26,11 @@ public class Medicamento {
     private Integer frequenciaH;
     private String orientacoes;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -110,7 +110,7 @@ public class Medicamento {
     }
 
     @Ignore
-    public Medicamento(Integer id, String uso, String tratamento, String formula, String dosagem,
+    public Medicamento(Long id, String uso, String tratamento, String formula, String dosagem,
                        String concentracao, Integer quantidade, Integer dias, Integer frequenciaH,
                        String orientacoes) {
         this.id = id;

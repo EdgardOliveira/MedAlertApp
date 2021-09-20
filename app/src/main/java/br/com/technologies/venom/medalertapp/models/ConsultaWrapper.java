@@ -1,9 +1,11 @@
 package br.com.technologies.venom.medalertapp.models;
 
-public class ReceitaWrapper {
+import java.util.List;
+
+public class ConsultaWrapper {
     private boolean sucesso;
     private String mensagem;
-    private DadosReceita receita;
+    private Consultas dados;
 
     public boolean isSucesso() {
         return sucesso;
@@ -21,20 +23,20 @@ public class ReceitaWrapper {
         this.mensagem = mensagem;
     }
 
-    public DadosReceita getReceita() {
-        return receita;
+    public Consultas getDados() {
+        return dados;
     }
 
-    public void setReceita(DadosReceita receita) {
-        this.receita = receita;
+    public void setDados(Consultas dados) {
+        this.dados = dados;
     }
 
-    public ReceitaWrapper() {
+    public ConsultaWrapper() {
     }
 
-    public ReceitaWrapper(boolean sucesso, String mensagem, DadosReceita receita) {
+    public ConsultaWrapper(boolean sucesso, String mensagem, Consultas dados) {
         this.sucesso = sucesso;
         this.mensagem = mensagem;
-        this.receita = receita;
+        this.dados = dados;
     }
 }

@@ -1,12 +1,11 @@
 package br.com.technologies.venom.medalertapp;
 
 import static android.content.ContentValues.TAG;
-import static br.com.technologies.venom.medalertapp.utis.Constantes.API_BASE_URL;
+import static br.com.technologies.venom.medalertapp.utils.Constantes.API_BASE_URL;
 
 import android.app.Application;
 import android.util.Log;
 
-import androidx.constraintlayout.widget.Constraints;
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
@@ -18,12 +17,12 @@ import br.com.technologies.venom.medalertapp.dao.EmpresaDAO;
 import br.com.technologies.venom.medalertapp.dao.MedicamentoDAO;
 import br.com.technologies.venom.medalertapp.dao.PacienteDAO;
 import br.com.technologies.venom.medalertapp.dao.ReceitaDAO;
+import br.com.technologies.venom.medalertapp.models.Consulta;
 import br.com.technologies.venom.medalertapp.models.Empresa;
 import br.com.technologies.venom.medalertapp.models.Medicamento;
-import br.com.technologies.venom.medalertapp.models.Medico;
 import br.com.technologies.venom.medalertapp.models.Paciente;
 import br.com.technologies.venom.medalertapp.models.Receita;
-import br.com.technologies.venom.medalertapp.models.ReceitaWrapper;
+import br.com.technologies.venom.medalertapp.models.ConsultaWrapper;
 import br.com.technologies.venom.medalertapp.services.RESTService;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -59,37 +58,42 @@ public class AppRepository {
         receitaDAO = appDatabase.getReceitaDAO();
     }
 
-    public void consultarReceitas(String codigo) {
-        Call<ReceitaWrapper> call = restService.consultarReceita(codigo);
+    public void consultarReceitasAPI(String codigo) {
+        Call<ConsultaWrapper> call = restService.consultarReceita(codigo);
 
-        call.enqueue(new Callback<ReceitaWrapper>() {
+        call.enqueue(new Callback<ConsultaWrapper>() {
             @Override
-            public void onResponse(Call<ReceitaWrapper> call, Response<ReceitaWrapper> response) {
+            public void onResponse(Call<ConsultaWrapper> call, Response<ConsultaWrapper> response) {
                 if (response.isSuccessful()) {
                     Log.d(TAG, "onResponse: Resposta recebida com sucesso!");
                     try {
-                        Empresa empresa = response.body().getReceita().getEmpresa();
-                        cadastrarEmpresa(empresa);
-                        Paciente paciente = response.body().getReceita().getConsulta().getPaciente();
-                        cadastrarPaciente(paciente);
-                        Receita receita = response.body().getReceita().getConsulta().getReceita();
-                        cadastrarReceita(receita);
-                        List<Medicamento> medicamentoList = response.body().getReceita().getConsulta().getReceita().getMedicamentos();
-                        for (Medicamento medicamento : medicamentoList) {
-                            cadastrarMedicamento(medicamento);
+                        List<Consulta> consultaList = response.body().getDados().getConsultas();
+                        for (Consulta consulta : consultaList) {
+
+                            Empresa empresa = consulta.getEmpresa();
+                            cadastrarEmpresa(empresa);
+
+                            Paciente paciente = consulta.getPaciente();
+                            cadastrarPaciente(paciente);
+
+                            Receita receita = consulta.getReceita();
+                            cadastrarReceita(receita);
+
+                            for (Medicamento medicamento : receita.getMedicamentos()) {
+                                cadastrarMedicamento(medicamento);
+                            }
                         }
                     } catch (Exception e) {
-                        Log.e(TAG, "onResponse: Ocorreu um erro", e);
+                        Log.e(TAG, "onResponse: Ocorreu um erro ao tentar salvar os dados", e);
                     }
                 } else {
-                    Log.d(TAG, "onResponse: Ocorreu um erro ao ter uma resposta. Erro:" + response.errorBody());
+                    Log.d(TAG, "onResponse: Ocorreu um erro ao tentar ler a resposta.\nErro:" + response.errorBody());
                 }
             }
 
             @Override
-            public void onFailure(Call<ReceitaWrapper> call, Throwable t) {
-                Log.d(TAG, "onFailure: Ocorreu um erro ao requisitar a receita:" +
-                        t.getMessage() + "\nRequisição: " + call.request().toString());
+            public void onFailure(Call<ConsultaWrapper> call, Throwable t) {
+                Log.e(TAG, "onFailure: Ocorreu um erro ao requisitar os dados da consulta", t);
             }
         });
     }

@@ -1,10 +1,20 @@
 package br.com.technologies.venom.medalertapp.models;
 
 public class Consulta {
+    private Long id;
     private String dataHora;
+    private Empresa empresa;
     private Medico medico;
     private Paciente paciente;
     private Receita receita;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getDataHora() {
         return dataHora;
@@ -12,6 +22,14 @@ public class Consulta {
 
     public void setDataHora(String dataHora) {
         this.dataHora = dataHora;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 
     public Medico getMedico() {
@@ -41,8 +59,10 @@ public class Consulta {
     public Consulta() {
     }
 
-    public Consulta(String dataHora, Medico medico, Paciente paciente, Receita receita) {
+    public Consulta(Long id, String dataHora, Empresa empresa, Medico medico, Paciente paciente, Receita receita) {
+        this.id = id;
         this.dataHora = dataHora;
+        this.empresa = empresa;
         this.medico = medico;
         this.paciente = paciente;
         this.receita = receita;

@@ -1,4 +1,4 @@
-package br.com.technologies.venom.medalertapp.utis;
+package br.com.technologies.venom.medalertapp.utils;
 
 public class Constantes {
     public static final String TAG = "MedAlertApp";
