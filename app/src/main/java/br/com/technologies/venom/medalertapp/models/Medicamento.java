@@ -1,5 +1,8 @@
 package br.com.technologies.venom.medalertapp.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.Index;
@@ -13,9 +16,10 @@ import androidx.room.PrimaryKey;
                 @Index("formula")
         }
 )
-public class Medicamento {
+public class Medicamento implements Parcelable {
     @PrimaryKey
     private Long id;
+    private Long receitaId;
     private String uso;
     private String tratamento;
     private String formula;
@@ -25,6 +29,14 @@ public class Medicamento {
     private Integer dias;
     private Integer frequenciaH;
     private String orientacoes;
+
+    public Long getReceitaId() {
+        return receitaId;
+    }
+
+    public void setReceitaId(Long receitaId) {
+        this.receitaId = receitaId;
+    }
 
     public Long getId() {
         return id;
@@ -110,10 +122,11 @@ public class Medicamento {
     }
 
     @Ignore
-    public Medicamento(Long id, String uso, String tratamento, String formula, String dosagem,
-                       String concentracao, Integer quantidade, Integer dias, Integer frequenciaH,
-                       String orientacoes) {
+    public Medicamento(Long id, Long receitaId, String uso, String tratamento, String formula,
+                       String dosagem, String concentracao, Integer quantidade, Integer dias,
+                       Integer frequenciaH, String orientacoes) {
         this.id = id;
+        this.receitaId = receitaId;
         this.uso = uso;
         this.tratamento = tratamento;
         this.formula = formula;
@@ -124,4 +137,50 @@ public class Medicamento {
         this.frequenciaH = frequenciaH;
         this.orientacoes = orientacoes;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(this.id);
+        dest.writeValue(this.receitaId);
+        dest.writeString(this.uso);
+        dest.writeString(this.tratamento);
+        dest.writeString(this.formula);
+        dest.writeString(this.dosagem);
+        dest.writeString(this.concentracao);
+        dest.writeValue(this.quantidade);
+        dest.writeValue(this.dias);
+        dest.writeValue(this.frequenciaH);
+        dest.writeString(this.orientacoes);
+    }
+
+    protected Medicamento(Parcel in) {
+        this.id = (Long) in.readValue(Long.class.getClassLoader());
+        this.receitaId = (Long) in.readValue(Long.class.getClassLoader());
+        this.uso = in.readString();
+        this.tratamento = in.readString();
+        this.formula = in.readString();
+        this.dosagem = in.readString();
+        this.concentracao = in.readString();
+        this.quantidade = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.dias = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.frequenciaH = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.orientacoes = in.readString();
+    }
+
+    public static final Creator<Medicamento> CREATOR = new Creator<Medicamento>() {
+        @Override
+        public Medicamento createFromParcel(Parcel source) {
+            return new Medicamento(source);
+        }
+
+        @Override
+        public Medicamento[] newArray(int size) {
+            return new Medicamento[size];
+        }
+    };
 }

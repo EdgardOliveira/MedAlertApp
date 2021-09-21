@@ -80,6 +80,7 @@ public class AppRepository {
                             cadastrarReceita(receita);
 
                             for (Medicamento medicamento : receita.getMedicamentos()) {
+                                medicamento.setReceitaId(receita.getCodigo());
                                 cadastrarMedicamento(medicamento);
                             }
                         }
@@ -179,6 +180,27 @@ public class AppRepository {
             @Override
             public LiveData<List<Medicamento>> call() {
                 return medicamentoDAO.listar();
+            }
+        });
+
+        try {
+            listaRecuperada = futureList.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return listaRecuperada;
+    }
+
+    public LiveData<List<Medicamento>> listarMedicamentosPorReceitaId(Long receitaId) {
+        Log.d(TAG, "listarMedicamentosPorReceitaId: Listando medicamentos cadastrados no banco de dados...");
+        LiveData<List<Medicamento>> listaRecuperada = null;
+        Future<LiveData<List<Medicamento>>> futureList = AppDatabase.EXECUTOR_SERVICE.submit(new Callable() {
+            @Override
+            public LiveData<List<Medicamento>> call() {
+                return medicamentoDAO.listarPorReceitaId(receitaId);
             }
         });
 

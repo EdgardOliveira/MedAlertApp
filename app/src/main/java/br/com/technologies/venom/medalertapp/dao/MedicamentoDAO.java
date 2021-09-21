@@ -13,6 +13,9 @@ public abstract class MedicamentoDAO implements DAOGenerico<Medicamento> {
     @Query("SELECT * FROM medicamentos")
     public abstract LiveData<List<Medicamento>> listar();
 
+    @Query("SELECT * FROM medicamentos where receitaId = :receitaId")
+    public abstract LiveData<List<Medicamento>> listarPorReceitaId(Long receitaId);
+
     @Query("DELETE FROM medicamentos")
     public abstract void excluirTodos();
 }

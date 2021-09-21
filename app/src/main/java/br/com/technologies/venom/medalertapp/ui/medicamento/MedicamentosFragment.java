@@ -1,4 +1,4 @@
-package br.com.technologies.venom.medalertapp.ui.receita;
+package br.com.technologies.venom.medalertapp.ui.medicamento;
 
 import static br.com.technologies.venom.medalertapp.utils.Rotinas.trocarTelaComExtra;
 
@@ -25,41 +25,53 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import java.util.List;
 
 import br.com.technologies.venom.medalertapp.R;
-import br.com.technologies.venom.medalertapp.adapters.ReceitaAdapter;
-import br.com.technologies.venom.medalertapp.databinding.FragmentReceitasBinding;
+import br.com.technologies.venom.medalertapp.adapters.MedicamentoAdapter;
+import br.com.technologies.venom.medalertapp.databinding.FragmentMedicamentosBinding;
 import br.com.technologies.venom.medalertapp.models.Medicamento;
 import br.com.technologies.venom.medalertapp.models.Receita;
 import br.com.technologies.venom.medalertapp.utils.RecyclerItemClickListener;
 import static br.com.technologies.venom.medalertapp.utils.Constantes.TAG;
-public class ReceitasFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, RecyclerItemClickListener.OnItemClickListener, View.OnClickListener {
 
-    private ReceitasViewModel receitasViewModel;
+public class MedicamentosFragment extends Fragment  implements SwipeRefreshLayout.OnRefreshListener, RecyclerItemClickListener.OnItemClickListener, View.OnClickListener {
+
     private View view;
-    private FragmentReceitasBinding binding;
+    private FragmentMedicamentosBinding binding;
     private RecyclerView recyclerView;
-    private ReceitaAdapter adapter;
+    private MedicamentoAdapter adapter;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private List<Receita> receitaList;
+    private Receita receita;
+    private List<Medicamento> medicamentoList;
     private RecyclerView.LayoutManager layoutManager;
 
+    private MedicamentosViewModel medicamentosViewModel;
 
-    public static ReceitasFragment newInstance() {
-        return new ReceitasFragment();
+    public static MedicamentosFragment newInstance() {
+        return new MedicamentosFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        receitasViewModel = new ViewModelProvider(this).get(ReceitasViewModel.class);
-        binding = FragmentReceitasBinding.inflate(inflater, container, false);
+        medicamentosViewModel = new ViewModelProvider(this).get(MedicamentosViewModel.class);
+
+        binding = FragmentMedicamentosBinding.inflate(inflater, container, false);
         view = binding.getRoot();
 
         configurarActionBar();
 
         //associando objetos da tela à variáveis
 
-        recyclerView = binding.rvReceitas;
-        swipeRefreshLayout = binding.swpReceitas;
+        recyclerView = binding.rvMedicamentos;
+        swipeRefreshLayout = binding.swpMedicamentos;
+
+        try {
+            Log.d(TAG, "onCreateView: passei pra pegar receita");
+            receita = (Receita) getArguments().getParcelable("receita");
+
+            Log.d(TAG, "onCreateView: receitas " + receita.getCodigo().toString());
+        } catch (Exception e){
+            Log.e(TAG, "onCreateView: Ocorreu um erro ao pegar a receita enviada", e);
+        }
 
         configurarSwipeRefresh();
 
@@ -72,8 +84,8 @@ public class ReceitasFragment extends Fragment implements SwipeRefreshLayout.OnR
     }
 
     private void configurarActionBar() {
-        String titulo = "Receitas";
-        String subtitulo = "Receitas médicas prescritas";
+        String titulo = "Medicamentos";
+        String subtitulo = "Prescritos para o tratamento";
         Drawable icone = getResources().getDrawable(R.drawable.ic_menu_camera);
 
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
@@ -99,7 +111,7 @@ public class ReceitasFragment extends Fragment implements SwipeRefreshLayout.OnR
     }
 
     private void configurarRecyclerView() {
-        adapter = new ReceitaAdapter();
+        adapter = new MedicamentoAdapter();
         layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -108,16 +120,16 @@ public class ReceitasFragment extends Fragment implements SwipeRefreshLayout.OnR
         recyclerView.scrollToPosition(0);
     }
 
-    private void consultarReceitas() {
+    private void consultarMedicamentos(Long receitaId) {
         swipeRefreshLayout.setRefreshing(true);
 
-        receitasViewModel.recuperarReceitas("123").observe(getViewLifecycleOwner(), new Observer<List<Receita>>() {
+        medicamentosViewModel.recuperarMedicamentos(receitaId).observe(getViewLifecycleOwner(), new Observer<List<Medicamento>>() {
 
             @Override
-            public void onChanged(List<Receita> receitaList) {
-                if (receitaList.size()>0){
-                    setReceitaList(receitaList);
-                    adapter.submitList(receitaList);
+            public void onChanged(List<Medicamento> medicamentoList) {
+                if (medicamentoList.size()>0){
+                    setMedicamentoList(medicamentoList);
+                    adapter.submitList(medicamentoList);
                     //já recebemos os dados... pare o efeito shimmer
                     adapter.setShimmer(false);
                     adapter.notifyDataSetChanged();
@@ -128,15 +140,15 @@ public class ReceitasFragment extends Fragment implements SwipeRefreshLayout.OnR
         });
     }
 
-    public void setReceitaList(List<Receita> receitaList) {
-        this.receitaList = receitaList;
+    public void setMedicamentoList(List<Medicamento> medicamentoList) {
+        this.medicamentoList = medicamentoList;
     }
 
     //Fragment
     @Override
     public void onStart() {
         super.onStart();
-        consultarReceitas();
+        consultarMedicamentos(receita.getCodigo());
         configurarRecyclerView();
     }
 
@@ -149,17 +161,17 @@ public class ReceitasFragment extends Fragment implements SwipeRefreshLayout.OnR
     //Swipe Refresh Layout
     @Override
     public void onRefresh() {
-        consultarReceitas();
+        consultarMedicamentos(receita.getCodigo());
         configurarRecyclerView();
     }
 
     //RecyclerItemClickListener
     @Override
     public void onItemClick(View view, int position) {
-        Receita receitaSelecionada = receitaList.get(position);
+        Medicamento medicamentoSelecionado = medicamentoList.get(position);
         Bundle bundle = new Bundle();
-        bundle.putParcelable("receita", receitaSelecionada);
-        trocarTelaComExtra(getParentFragment(), R.id.action_nav_receitas_to_nav_medicamentos, bundle);
+        bundle.putParcelable("medicamento", medicamentoSelecionado);
+        trocarTelaComExtra(getParentFragment(), R.id.action_nav_medicamentos_to_nav_medicamento_detalhe, bundle);
     }
 
     //RecyclerItemClickListener

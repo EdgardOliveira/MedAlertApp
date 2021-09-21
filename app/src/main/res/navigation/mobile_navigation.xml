@@ -22,6 +22,36 @@
         <action
             android:id="@+id/action_nav_receitas_to_nav_home"
             app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_nav_receitas_to_nav_medicamentos"
+            app:destination="@id/nav_medicamentos" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_medicamentos"
+        android:name="br.com.technologies.venom.medalertapp.ui.medicamento.MedicamentosFragment"
+        android:label="Medicamentos"
+        tools:layout="@layout/fragment_medicamentos" >
+        <action
+            android:id="@+id/action_nav_medicamentos_to_nav_receitas"
+            app:destination="@id/nav_receitas" />
+        <action
+            android:id="@+id/action_nav_medicamentos_to_nav_medicamento_detalhe"
+            app:destination="@id/nav_medicamento_detalhe" />
+        <argument
+            android:name="receita"
+            app:argType="br.com.technologies.venom.medalertapp.models.Receita" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_medicamento_detalhe"
+        android:name="br.com.technologies.venom.medalertapp.ui.medicamento.MedicamentoDetalheFragment"
+        android:label="fragment_medicamento_detalhe"
+        tools:layout="@layout/fragment_medicamento_detalhe" >
+        <action
+            android:id="@+id/action_nav_medicamento_detalhe_to_nav_medicamentos"
+            app:destination="@id/nav_medicamentos" />
+        <argument
+            android:name="medicamento"
+            app:argType="br.com.technologies.venom.medalertapp.models.Medicamento" />
     </fragment>
 
 </navigation>

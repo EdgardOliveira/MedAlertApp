@@ -26,6 +26,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/ivLogotipo"
+            android:layout_width="85dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_medalert_simbolo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvNomePaciente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Olá Edgard"
+            android:textColor="@color/accent"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/ivLogotipo"
+            app:layout_constraintStart_toStartOf="@+id/ivLogotipo"
+            app:layout_constraintTop_toBottomOf="@+id/ivLogotipo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.gridlayout.widget.GridLayout
@@ -39,7 +60,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/gdlHomeTopo"
-        app:rowCount="3">
+        app:rowCount="4">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvReceitas"
@@ -62,7 +83,7 @@
                     android:layout_width="114dp"
                     android:layout_height="114dp"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_menu_camera"
+                    app:srcCompat="@drawable/ic_receitas"
                     tools:ignore="VectorDrawableCompat" />
 
                 <TextView
@@ -98,7 +119,7 @@
                     android:layout_width="114dp"
                     android:layout_height="114dp"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_menu_gallery"
+                    app:srcCompat="@drawable/ic_cartao"
                     tools:ignore="VectorDrawableCompat" />
 
                 <TextView
@@ -134,7 +155,7 @@
                     android:layout_width="114dp"
                     android:layout_height="114dp"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_menu_slideshow"
+                    app:srcCompat="@drawable/ic_iot"
                     tools:ignore="VectorDrawableCompat" />
 
                 <TextView
@@ -170,7 +191,7 @@
                     android:layout_width="114dp"
                     android:layout_height="114dp"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_launcher_foreground"
+                    app:srcCompat="@drawable/ic_sair"
                     tools:ignore="VectorDrawableCompat" />
 
                 <TextView

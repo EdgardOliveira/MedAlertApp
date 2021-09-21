@@ -73,7 +73,7 @@ public class ReceitaViewHolder extends RecyclerView.ViewHolder {
             tvTratamento.setText(tratamentos);
 
             ivReceita.setBackground(null);
-            ivReceita.setImageResource(R.drawable.ic_menu_camera);
+            ivReceita.setImageResource(R.drawable.ic_receitas);
         }catch (Exception e){
             Log.d(TAG, "bindTo: Ocorreu um erro ao tentar fazer binding.\nErro: " + e.getMessage());
         }

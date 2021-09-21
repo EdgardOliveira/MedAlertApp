@@ -5,10 +5,16 @@
       <map>
         <entry key="..\:/Users/Edgard/Documents/Github/Java/Android Studio/MedAlertApp/app/src/main/res/drawable-v24/topo.xml" value="0.3828125" />
         <entry key="..\:/Users/Edgard/Documents/Github/Java/Android Studio/MedAlertApp/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Edgard/Documents/Github/Java/Android Studio/MedAlertApp/app/src/main/res/layout/app_bar_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Edgard/Documents/Github/Java/Android Studio/MedAlertApp/app/src/main/res/layout/cardview_medicamentos_item.xml" value="0.75" />
         <entry key="..\:/Users/Edgard/Documents/Github/Java/Android Studio/MedAlertApp/app/src/main/res/layout/cardview_receitas_item.xml" value="1.0" />
         <entry key="..\:/Users/Edgard/Documents/Github/Java/Android Studio/MedAlertApp/app/src/main/res/layout/content_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Edgard/Documents/Github/Java/Android Studio/MedAlertApp/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Edgard/Documents/Github/Java/Android Studio/MedAlertApp/app/src/main/res/layout/fragment_medicamentos.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Edgard/Documents/Github/Java/Android Studio/MedAlertApp/app/src/main/res/layout/fragment_receitas.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Edgard/Documents/Github/Java/Android Studio/MedAlertApp/app/src/main/res/layout/nav_header_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Edgard/Documents/Github/Java/Android Studio/MedAlertApp/app/src/main/res/menu/activity_main_drawer.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Edgard/Documents/Github/Java/Android Studio/MedAlertApp/app/src/main/res/menu/main.xml" value="0.20520833333333333" />
       </map>
     </option>
   </component>
