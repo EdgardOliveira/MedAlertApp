@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@id/nav_splash_screen">
+
+    <fragment
+        android:id="@+id/nav_splash_screen"
+        android:name="br.com.technologies.venom.medalertapp.ui.splash.SplashScreenFragment"
+        android:label="Splash Screen"
+        tools:layout="@layout/fragment_splash_screen">
+        <action
+            android:id="@+id/action_nav_splash_screen_to_nav_login"
+            app:destination="@id/nav_login" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_home"
@@ -13,6 +24,12 @@
         <action
             android:id="@+id/action_nav_home_to_nav_receitas"
             app:destination="@id/nav_receitas" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_cartao"
+            app:destination="@id/nav_cartao" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_login"
+            app:destination="@id/nav_login" />
     </fragment>
     <fragment
         android:id="@+id/nav_receitas"
@@ -44,14 +61,36 @@
     <fragment
         android:id="@+id/nav_medicamento_detalhe"
         android:name="br.com.technologies.venom.medalertapp.ui.medicamento.MedicamentoDetalheFragment"
-        android:label="fragment_medicamento_detalhe"
-        tools:layout="@layout/fragment_medicamento_detalhe" >
+        android:label="Detalhes do medicamento"
+        tools:layout="@layout/fragment_medicamento_detalhe">
         <action
             android:id="@+id/action_nav_medicamento_detalhe_to_nav_medicamentos"
             app:destination="@id/nav_medicamentos" />
         <argument
             android:name="medicamento"
             app:argType="br.com.technologies.venom.medalertapp.models.Medicamento" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_cartao"
+        android:name="br.com.technologies.venom.medalertapp.ui.cartao.CartaoFragment"
+        android:label="Cartão de Saúde"
+        tools:layout="@layout/fragment_cartao">
+        <action
+            android:id="@+id/action_nav_cartao_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_login"
+        android:name="br.com.technologies.venom.medalertapp.ui.login.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_nav_login_to_nav_home"
+            app:destination="@id/nav_home"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_nav_login_to_nav_splash_screen"
+            app:destination="@id/nav_splash_screen" />
     </fragment>
 
 </navigation>

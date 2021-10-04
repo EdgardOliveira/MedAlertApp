@@ -16,6 +16,9 @@
 
         <!-- Customize your theme here. -->
     </style>
+    <style name="SplashScreen" parent="Theme.AppCompat.NoActionBar">
+
+    </style>
 
     <style name="Theme.MedAlertApp.NoActionBar">
         <item name="windowActionBar">false</item>

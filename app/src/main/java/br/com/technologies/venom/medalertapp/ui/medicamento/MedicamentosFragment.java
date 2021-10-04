@@ -68,7 +68,7 @@ public class MedicamentosFragment extends Fragment  implements SwipeRefreshLayou
             Log.d(TAG, "onCreateView: passei pra pegar receita");
             receita = (Receita) getArguments().getParcelable("receita");
 
-            Log.d(TAG, "onCreateView: receitas " + receita.getCodigo().toString());
+            Log.d(TAG, "onCreateView: receitas " + receita.getId());
         } catch (Exception e){
             Log.e(TAG, "onCreateView: Ocorreu um erro ao pegar a receita enviada", e);
         }
@@ -120,7 +120,7 @@ public class MedicamentosFragment extends Fragment  implements SwipeRefreshLayou
         recyclerView.scrollToPosition(0);
     }
 
-    private void consultarMedicamentos(Long receitaId) {
+    private void consultarMedicamentos(String receitaId) {
         swipeRefreshLayout.setRefreshing(true);
 
         medicamentosViewModel.recuperarMedicamentos(receitaId).observe(getViewLifecycleOwner(), new Observer<List<Medicamento>>() {
@@ -148,7 +148,7 @@ public class MedicamentosFragment extends Fragment  implements SwipeRefreshLayou
     @Override
     public void onStart() {
         super.onStart();
-        consultarMedicamentos(receita.getCodigo());
+        consultarMedicamentos(receita.getId());
         configurarRecyclerView();
     }
 
@@ -161,7 +161,7 @@ public class MedicamentosFragment extends Fragment  implements SwipeRefreshLayou
     //Swipe Refresh Layout
     @Override
     public void onRefresh() {
-        consultarMedicamentos(receita.getCodigo());
+        consultarMedicamentos(receita.getId());
         configurarRecyclerView();
     }
 

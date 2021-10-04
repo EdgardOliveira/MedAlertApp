@@ -111,7 +111,7 @@ public class ReceitasFragment extends Fragment implements SwipeRefreshLayout.OnR
     private void consultarReceitas() {
         swipeRefreshLayout.setRefreshing(true);
 
-        receitasViewModel.recuperarReceitas("123").observe(getViewLifecycleOwner(), new Observer<List<Receita>>() {
+        receitasViewModel.recuperarReceitas().observe(getViewLifecycleOwner(), new Observer<List<Receita>>() {
 
             @Override
             public void onChanged(List<Receita> receitaList) {
@@ -176,8 +176,6 @@ public class ReceitasFragment extends Fragment implements SwipeRefreshLayout.OnR
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
 
-        }
     }
 }

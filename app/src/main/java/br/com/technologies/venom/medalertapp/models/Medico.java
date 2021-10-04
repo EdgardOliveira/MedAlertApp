@@ -1,16 +1,21 @@
 package br.com.technologies.venom.medalertapp.models;
 
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+
 public class Medico {
-    private Long id;
+    @PrimaryKey
+    private String id;
     private String nome;
     private String crm;
-    private String especialidade;
+    private String especialidadeId;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -30,21 +35,22 @@ public class Medico {
         this.crm = crm;
     }
 
-    public String getEspecialidade() {
-        return especialidade;
+    public String getEspecialidadeId() {
+        return especialidadeId;
     }
 
-    public void setEspecialidade(String especialidade) {
-        this.especialidade = especialidade;
+    public void setEspecialidadeId(String especialidadeId) {
+        this.especialidadeId = especialidadeId;
     }
 
     public Medico() {
     }
 
-    public Medico(Long id, String nome, String crm, String especialidade) {
+    @Ignore
+    public Medico(String id, String nome, String crm, String especialidadeId) {
         this.id = id;
         this.nome = nome;
         this.crm = crm;
-        this.especialidade = especialidade;
+        this.especialidadeId = especialidadeId;
     }
 }

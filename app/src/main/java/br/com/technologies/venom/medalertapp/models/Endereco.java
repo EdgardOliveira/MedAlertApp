@@ -1,13 +1,29 @@
 package br.com.technologies.venom.medalertapp.models;
 
+import androidx.annotation.NonNull;
+import androidx.room.Embedded;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 public class Endereco {
+    @PrimaryKey
+    @NonNull
+    private String id;
     private String cep;
     private String logradouro;
     private String numero;
     private String complemento;
-    private String bairro;
-    private String cidade;
-    private String uf;
+    @Embedded(prefix = "comp_")
+    private Bairro bairro;
+
+    @NonNull
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@NonNull String id) {
+        this.id = id;
+    }
 
     public String getCep() {
         return cep;
@@ -41,40 +57,24 @@ public class Endereco {
         this.complemento = complemento;
     }
 
-    public String getBairro() {
+    public Bairro getBairro() {
         return bairro;
     }
 
-    public void setBairro(String bairro) {
+    public void setBairro(Bairro bairro) {
         this.bairro = bairro;
-    }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    public String getUf() {
-        return uf;
-    }
-
-    public void setUf(String uf) {
-        this.uf = uf;
     }
 
     public Endereco() {
     }
 
-    public Endereco(String cep, String logradouro, String numero, String complemento, String bairro, String cidade, String uf) {
+    @Ignore
+    public Endereco(@NonNull String id, String cep, String logradouro, String numero, String complemento, Bairro bairro) {
+        this.id = id;
         this.cep = cep;
         this.logradouro = logradouro;
         this.numero = numero;
         this.complemento = complemento;
         this.bairro = bairro;
-        this.cidade = cidade;
-        this.uf = uf;
     }
 }

@@ -39,6 +39,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         cvSair = binding.cvSair;
 
         cvReceitas.setOnClickListener(this);
+        cvCartao.setOnClickListener(this);
+        cvSair.setOnClickListener(this);
 
         return view;
     }
@@ -55,6 +57,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             case R.id.cvReceitas:
                 trocarTela(getParentFragment(), R.id.action_nav_home_to_nav_receitas);
                 break;
+            case R.id.cvCartao:
+                trocarTela(getParentFragment(), R.id.action_nav_home_to_nav_cartao);
+                break;
+            case R.id.cvSair:
+                trocarTela(getParentFragment(), R.id.action_nav_home_to_nav_login);
         }
     }
 }

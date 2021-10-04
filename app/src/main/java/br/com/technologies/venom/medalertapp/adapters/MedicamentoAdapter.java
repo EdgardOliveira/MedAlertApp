@@ -16,7 +16,6 @@ import java.util.List;
 
 import br.com.technologies.venom.medalertapp.R;
 import br.com.technologies.venom.medalertapp.models.Medicamento;
-import br.com.technologies.venom.medalertapp.models.Receita;
 
 public class MedicamentoAdapter extends RecyclerView.Adapter<MedicamentoViewHolder> {
     private final AsyncListDiffer<Medicamento> mDiffer = new AsyncListDiffer(this, DIFF_CALLBACK);

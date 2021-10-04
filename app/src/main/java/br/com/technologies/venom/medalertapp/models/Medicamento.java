@@ -3,6 +3,7 @@ package br.com.technologies.venom.medalertapp.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.Index;
@@ -18,8 +19,9 @@ import androidx.room.PrimaryKey;
 )
 public class Medicamento implements Parcelable {
     @PrimaryKey
-    private Long id;
-    private Long receitaId;
+    @NonNull
+    private String id;
+    private String receitaId;
     private String uso;
     private String tratamento;
     private String formula;
@@ -30,20 +32,20 @@ public class Medicamento implements Parcelable {
     private Integer frequenciaH;
     private String orientacoes;
 
-    public Long getReceitaId() {
-        return receitaId;
-    }
-
-    public void setReceitaId(Long receitaId) {
-        this.receitaId = receitaId;
-    }
-
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public String getReceitaId() {
+        return receitaId;
+    }
+
+    public void setReceitaId(String receitaId) {
+        this.receitaId = receitaId;
     }
 
     public String getUso() {
@@ -122,9 +124,7 @@ public class Medicamento implements Parcelable {
     }
 
     @Ignore
-    public Medicamento(Long id, Long receitaId, String uso, String tratamento, String formula,
-                       String dosagem, String concentracao, Integer quantidade, Integer dias,
-                       Integer frequenciaH, String orientacoes) {
+    public Medicamento(String id, String receitaId, String uso, String tratamento, String formula, String dosagem, String concentracao, Integer quantidade, Integer dias, Integer frequenciaH, String orientacoes) {
         this.id = id;
         this.receitaId = receitaId;
         this.uso = uso;
@@ -138,6 +138,7 @@ public class Medicamento implements Parcelable {
         this.orientacoes = orientacoes;
     }
 
+
     @Override
     public int describeContents() {
         return 0;
@@ -145,8 +146,8 @@ public class Medicamento implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(this.id);
-        dest.writeValue(this.receitaId);
+        dest.writeString(this.id);
+        dest.writeString(this.receitaId);
         dest.writeString(this.uso);
         dest.writeString(this.tratamento);
         dest.writeString(this.formula);
@@ -159,8 +160,8 @@ public class Medicamento implements Parcelable {
     }
 
     protected Medicamento(Parcel in) {
-        this.id = (Long) in.readValue(Long.class.getClassLoader());
-        this.receitaId = (Long) in.readValue(Long.class.getClassLoader());
+        this.id = in.readString();
+        this.receitaId = in.readString();
         this.uso = in.readString();
         this.tratamento = in.readString();
         this.formula = in.readString();

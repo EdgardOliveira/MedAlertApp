@@ -1,6 +1,8 @@
 package br.com.technologies.venom.medalertapp.adapters;
 
 
+import static br.com.technologies.venom.medalertapp.utils.Constantes.TAG;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +17,6 @@ import java.util.List;
 
 import br.com.technologies.venom.medalertapp.R;
 import br.com.technologies.venom.medalertapp.models.Receita;
-import static br.com.technologies.venom.medalertapp.utils.Constantes.TAG;
 
 public class ReceitaAdapter extends RecyclerView.Adapter<ReceitaViewHolder> {
     private final AsyncListDiffer<Receita> mDiffer = new AsyncListDiffer(this, DIFF_CALLBACK);
@@ -58,12 +59,12 @@ public class ReceitaAdapter extends RecyclerView.Adapter<ReceitaViewHolder> {
         @Override
         public boolean areItemsTheSame(
                 @NonNull Receita oldReceita, @NonNull Receita newReceita) {
-            return oldReceita.getCodigo() == newReceita.getCodigo();
+            return oldReceita.getId() == newReceita.getId();
         }
 
         @Override
         public boolean areContentsTheSame(@NonNull Receita oldReceita, @NonNull Receita newReceita) {
-            return oldReceita.getCodigo().equals(newReceita.getCodigo());
+            return oldReceita.getId().equals(newReceita.getId());
         }
     };
 }

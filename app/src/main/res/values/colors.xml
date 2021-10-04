@@ -27,4 +27,5 @@
 
     <!--  Shimmer  -->
     <color name="colorShimmer">#E4E2E2</color>
+    <color name="BlueApp">#0091EA</color>
 </resources>

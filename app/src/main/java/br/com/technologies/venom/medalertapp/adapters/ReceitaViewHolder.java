@@ -1,6 +1,8 @@
 package br.com.technologies.venom.medalertapp.adapters;
 
 
+import static br.com.technologies.venom.medalertapp.utils.Constantes.TAG;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,7 +18,6 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import br.com.technologies.venom.medalertapp.R;
 import br.com.technologies.venom.medalertapp.models.Medicamento;
 import br.com.technologies.venom.medalertapp.models.Receita;
-import static br.com.technologies.venom.medalertapp.utils.Constantes.TAG;
 
 public class ReceitaViewHolder extends RecyclerView.ViewHolder {
     //atributos
@@ -58,7 +59,7 @@ public class ReceitaViewHolder extends RecyclerView.ViewHolder {
 
             tvIdTitulo.setBackground(null);
             tvId.setBackground(null);
-            tvId.setText(String.valueOf(receita.getCodigo()));
+            tvId.setText(String.valueOf(receita.getId()));
 
             tvStatusTitulo.setBackground(null);
             tvStatus.setBackground(null);

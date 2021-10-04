@@ -1,14 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/DarkerGrey"
     tools:context=".ui.medicamento.MedicamentoDetalheFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ImageButton
+        android:id="@+id/ibFoto"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="76dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_barcode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tvNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Nome do medicamento"
+        android:textColor="@color/MediumGrey"
+        app:layout_constraintEnd_toEndOf="@+id/ibFoto"
+        app:layout_constraintStart_toStartOf="@+id/ibFoto"
+        app:layout_constraintTop_toBottomOf="@+id/ibFoto" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_grupo"
+        app:layout_constraintEnd_toEndOf="@+id/tvPrecos"
+        app:layout_constraintStart_toStartOf="@+id/tvPrecos"
+        app:layout_constraintTop_toBottomOf="@+id/tvPrecos" />
+
+    <TextView
+        android:id="@+id/tvPrecos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Preços"
+        android:textColor="@color/MediumGrey"
+        app:layout_constraintEnd_toEndOf="@+id/tvNome"
+        app:layout_constraintStart_toStartOf="@+id/tvNome"
+        app:layout_constraintTop_toBottomOf="@+id/tvNome" />
+
+    <TextView
+        android:id="@+id/tvPrecoMinTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mínimo"
+        android:textColor="@color/MediumGrey"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/tvPrecoMedTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Média"
+        android:textColor="@color/MediumGrey"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/tvPrecoMaxTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Máximo"
+        android:textColor="@color/MediumGrey"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/tvPrecoMin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mínimo"
+        android:textColor="@color/MediumGrey"
+        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/tvPrecoMed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Média"
+        android:textColor="@color/MediumGrey"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/tvPrecoMax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Máximo"
+        android:textColor="@color/MediumGrey"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/tvFarmaceutica"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Farmacêutica"
+        app:layout_constraintBottom_toTopOf="@+id/ibFoto"
+        app:layout_constraintEnd_toEndOf="@+id/ibFoto"
+        app:layout_constraintStart_toStartOf="@+id/ibFoto"
+        android:textColor="@color/MediumGrey" />
+
+    <Button
+        android:id="@+id/btnBula"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="bula"
+        app:layout_constraintEnd_toEndOf="@+id/tvPrecoMax"
+        app:layout_constraintStart_toStartOf="@+id/tvPrecoMin"
+        app:layout_constraintTop_toBottomOf="@+id/tvPrecoMed" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:theme="@style/progressbarColor"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/ibFoto"
+        app:layout_constraintEnd_toEndOf="@+id/ibFoto"
+        app:layout_constraintStart_toStartOf="@+id/ibFoto"
+        app:layout_constraintTop_toTopOf="@+id/ibFoto" />
+
+    <Button
+        android:id="@+id/btnIniciarTratamento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Iniciar Tratamento"
+        app:layout_constraintEnd_toEndOf="@+id/btnBula"
+        app:layout_constraintStart_toStartOf="@+id/btnBula"
+        app:layout_constraintTop_toBottomOf="@+id/btnBula" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

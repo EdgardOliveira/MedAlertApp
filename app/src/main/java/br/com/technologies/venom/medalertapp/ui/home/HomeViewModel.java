@@ -15,8 +15,4 @@ public class HomeViewModel extends AndroidViewModel {
         super(application);
         appRepository = new AppRepository(application);
     }
-
-    public void consultarReceita(){
-        appRepository.consultarReceitasAPI("123");
-    }
 }

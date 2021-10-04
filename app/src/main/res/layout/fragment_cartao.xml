@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.MedAlertApp.NoActionBar"
+    app:background="@color/BlueApp"
+    tools:context=".ui.cartao.CartaoFragment">
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gdlCartaoEsquerda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gdlCartaoDireita"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gdlCartaoTopo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gdlCartaoRodape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cardBackgroundColor="@color/DarkerGrey"
+        app:cardCornerRadius="22dp"
+        app:layout_constraintBottom_toTopOf="@+id/gdlCartaoRodape"
+        app:layout_constraintEnd_toStartOf="@+id/gdlCartaoDireita"
+        app:layout_constraintStart_toStartOf="@+id/gdlCartaoEsquerda"
+        app:layout_constraintTop_toTopOf="@+id/gdlCartaoTopo">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="200dp"
+                android:layout_height="75dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_umined" />
+
+            <TextView
+                android:id="@+id/tvCartaoCodigo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/credit"
+                android:text="888884735077730018"
+                android:textColor="@color/MedGrey"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="@+id/tvCartaoCodigoTitulo"
+                app:layout_constraintTop_toBottomOf="@+id/tvCartaoCodigoTitulo" />
+
+            <TextView
+                android:id="@+id/tvCartaoCodigoTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginBottom="24dp"
+                android:text="Código de Identificação"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView4" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

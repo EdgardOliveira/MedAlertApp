@@ -1,5 +1,8 @@
 package br.com.technologies.venom.medalertapp.utils;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -28,5 +31,11 @@ public class Rotinas {
         }catch (Exception e){
             Log.e(TAG, "trocarTelaComExtra: Ocorreu um erro ao tentar trocar para a tela com extras", e);
         }
+    }
+
+    public static void abrirPagina(Context context, String endereco){
+        Uri uri = Uri.parse(endereco);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        context.startActivity(intent);
     }
 }

@@ -10,6 +10,7 @@ import java.util.List;
 
 import br.com.technologies.venom.medalertapp.AppRepository;
 import br.com.technologies.venom.medalertapp.models.Medicamento;
+import br.com.technologies.venom.medalertapp.models.MedicamentoDetalheResp;
 
 public class MedicamentosViewModel extends AndroidViewModel {
     private AppRepository appRepository;
@@ -19,8 +20,12 @@ public class MedicamentosViewModel extends AndroidViewModel {
         appRepository = new AppRepository(application);
     }
 
-    public LiveData<List<Medicamento>> recuperarMedicamentos(Long codigo) {
+    public LiveData<List<Medicamento>> recuperarMedicamentos(String receitaId) {
         //Carrega os dados do banco de dados
-        return appRepository.listarMedicamentosPorReceitaId(codigo);
+        return appRepository.listarMedicamentosPorReceitaId(receitaId);
+    }
+
+    public LiveData<MedicamentoDetalheResp> consultarMedicamentoPorCodigo(String codigo){
+        return appRepository.consultarMedicamentoAPI(codigo);
     }
 }

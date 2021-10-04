@@ -13,29 +13,26 @@ import java.util.Date;
         tableName = "pacientes",
         indices = {
                 @Index("nome"),
-                @Index("convenio"),
-                @Index("idade")
         }
 )
 public class Paciente {
     @PrimaryKey
     @NonNull
-    private String codigo;
+    private String id;
     private String nome;
-    private String convenio;
-    private String acomodacao;
-    private Date validade;
-    private Integer idade;
-    @Embedded(prefix = "paciente_")
+    private Date dataNascimento;
+    @Embedded(prefix = "conv_")
+    private Convenio convenio;
+    @Embedded(prefix = "end_")
     private Endereco endereco;
 
     @NonNull
-    public String getCodigo() {
-        return codigo;
+    public String getId() {
+        return id;
     }
 
-    public void setCodigo(@NonNull String codigo) {
-        this.codigo = codigo;
+    public void setId(@NonNull String id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -46,36 +43,20 @@ public class Paciente {
         this.nome = nome;
     }
 
-    public String getConvenio() {
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public Convenio getConvenio() {
         return convenio;
     }
 
-    public void setConvenio(String convenio) {
+    public void setConvenio(Convenio convenio) {
         this.convenio = convenio;
-    }
-
-    public String getAcomodacao() {
-        return acomodacao;
-    }
-
-    public void setAcomodacao(String acomodacao) {
-        this.acomodacao = acomodacao;
-    }
-
-    public Date getValidade() {
-        return validade;
-    }
-
-    public void setValidade(Date validade) {
-        this.validade = validade;
-    }
-
-    public Integer getIdade() {
-        return idade;
-    }
-
-    public void setIdade(Integer idade) {
-        this.idade = idade;
     }
 
     public Endereco getEndereco() {
@@ -89,14 +70,12 @@ public class Paciente {
     public Paciente() {
     }
 
-    public Paciente(@NonNull String codigo, String nome, String convenio, String acomodacao,
-                    Date validade, Integer idade, Endereco endereco) {
-        this.codigo = codigo;
+    @Ignore
+    public Paciente(@NonNull String id, String nome, Date dataNascimento, Convenio convenio, Endereco endereco) {
+        this.id = id;
         this.nome = nome;
+        this.dataNascimento = dataNascimento;
         this.convenio = convenio;
-        this.acomodacao = acomodacao;
-        this.validade = validade;
-        this.idade = idade;
         this.endereco = endereco;
     }
 }

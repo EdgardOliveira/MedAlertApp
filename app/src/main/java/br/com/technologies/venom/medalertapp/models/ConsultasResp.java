@@ -1,11 +1,13 @@
 package br.com.technologies.venom.medalertapp.models;
 
+import androidx.room.Ignore;
+
 import java.util.List;
 
-public class ConsultaWrapper {
+public class ConsultasResp {
     private boolean sucesso;
     private String mensagem;
-    private Consultas dados;
+    private List<Consulta> consultas = null;
 
     public boolean isSucesso() {
         return sucesso;
@@ -23,20 +25,21 @@ public class ConsultaWrapper {
         this.mensagem = mensagem;
     }
 
-    public Consultas getDados() {
-        return dados;
+    public List<Consulta> getConsultas() {
+        return consultas;
     }
 
-    public void setDados(Consultas dados) {
-        this.dados = dados;
+    public void setConsultas(List<Consulta> consultas) {
+        this.consultas = consultas;
     }
 
-    public ConsultaWrapper() {
+    public ConsultasResp() {
     }
 
-    public ConsultaWrapper(boolean sucesso, String mensagem, Consultas dados) {
+    @Ignore
+    public ConsultasResp(boolean sucesso, String mensagem, List<Consulta> consultas) {
         this.sucesso = sucesso;
         this.mensagem = mensagem;
-        this.dados = dados;
+        this.consultas = consultas;
     }
 }

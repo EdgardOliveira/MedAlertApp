@@ -14,11 +14,9 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import br.com.technologies.venom.medalertapp.dao.EmpresaDAO;
 import br.com.technologies.venom.medalertapp.dao.MedicamentoDAO;
 import br.com.technologies.venom.medalertapp.dao.PacienteDAO;
 import br.com.technologies.venom.medalertapp.dao.ReceitaDAO;
-import br.com.technologies.venom.medalertapp.models.Empresa;
 import br.com.technologies.venom.medalertapp.models.Medicamento;
 import br.com.technologies.venom.medalertapp.models.Paciente;
 import br.com.technologies.venom.medalertapp.models.Receita;
@@ -26,10 +24,9 @@ import br.com.technologies.venom.medalertapp.utils.Conversor;
 
 @Database(
         entities = {
-                Empresa.class,
                 Paciente.class,
                 Receita.class,
-                Medicamento.class
+                Medicamento.class,
         },
         version = 1,
         exportSchema = false
@@ -43,10 +40,10 @@ public abstract class AppDatabase extends RoomDatabase {
     private static final int NUMERO_DE_THREADS = 4;
     public static final ExecutorService EXECUTOR_SERVICE = Executors.newFixedThreadPool(NUMERO_DE_THREADS);
 
-    public abstract EmpresaDAO getEmpresaDAO();
     public abstract PacienteDAO getPacienteDAO();
     public abstract ReceitaDAO getReceitaDAO();
     public abstract MedicamentoDAO getMedicamentoDAO();
+
 
     public static AppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {

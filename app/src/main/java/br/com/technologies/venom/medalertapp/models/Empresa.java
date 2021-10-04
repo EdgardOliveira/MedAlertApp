@@ -1,29 +1,26 @@
 package br.com.technologies.venom.medalertapp.models;
 
 import androidx.annotation.NonNull;
-import androidx.room.Embedded;
-import androidx.room.Entity;
 import androidx.room.Ignore;
-import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(
-        tableName = "empresas",
-        indices = {
-                @Index("nome"),
-                @Index("nomeFantasia"),
-                @Index("telefone")
-        }
-)
 public class Empresa {
     @PrimaryKey
     @NonNull
+    private String id;
     private String cnpj;
     private String nome;
     private String nomeFantasia;
     private String telefone;
-    @Embedded(prefix = "empresa_")
-    private Endereco endereco;
+    private String enderecoId;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getCnpj() {
         return cnpj;
@@ -49,14 +46,6 @@ public class Empresa {
         this.nomeFantasia = nomeFantasia;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
-
     public String getTelefone() {
         return telefone;
     }
@@ -65,15 +54,24 @@ public class Empresa {
         this.telefone = telefone;
     }
 
+    public String getEnderecoId() {
+        return enderecoId;
+    }
+
+    public void setEnderecoId(String enderecoId) {
+        this.enderecoId = enderecoId;
+    }
+
     public Empresa() {
     }
 
     @Ignore
-    public Empresa(String cnpj, String nome, String nomeFantasia, Endereco endereco, String telefone) {
+    public Empresa(String id, String cnpj, String nome, String nomeFantasia, String telefone, String enderecoId) {
+        this.id = id;
         this.cnpj = cnpj;
         this.nome = nome;
         this.nomeFantasia = nomeFantasia;
-        this.endereco = endereco;
         this.telefone = telefone;
+        this.enderecoId = enderecoId;
     }
 }

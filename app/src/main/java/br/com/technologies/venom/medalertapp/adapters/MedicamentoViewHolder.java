@@ -16,7 +16,6 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 
 import br.com.technologies.venom.medalertapp.R;
 import br.com.technologies.venom.medalertapp.models.Medicamento;
-import br.com.technologies.venom.medalertapp.models.Receita;
 
 public class MedicamentoViewHolder extends RecyclerView.ViewHolder {
     //atributos

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_login"
+    tools:context=".ui.login.LoginFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gdlLoginTopo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gdlLoginEsquerda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <TextView
+        android:id="@+id/tvLoginTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/regular"
+        android:text="Login"
+        android:textColor="@color/BlueApp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/gdlLoginDireita"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/gdlLoginEsquerda"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layLoginEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textColorHint="@color/MedGrey"
+        app:boxBackgroundColor="@color/DarkGrey"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusTopStart="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/gdlLoginDireita"
+        app:layout_constraintStart_toStartOf="@+id/gdlLoginEsquerda"
+        app:layout_constraintTop_toBottomOf="@+id/tvLoginTitulo"
+        app:startIconContentDescription="email"
+        app:startIconDrawable="@drawable/ic_email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etLoginEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/regular"
+            android:hint="E-mail"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress"
+            android:singleLine="true"
+            android:text="edgard.oliveira@protonmail.com"
+            android:textColor="@color/LightGrey" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layLoginSenha"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textColorHint="@color/MedGrey"
+        app:boxBackgroundColor="@color/DarkGrey"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusTopStart="8dp"
+        app:endIconMode="password_toggle"
+        app:layout_constraintEnd_toStartOf="@+id/gdlLoginDireita"
+        app:layout_constraintStart_toStartOf="@+id/gdlLoginEsquerda"
+        app:layout_constraintTop_toBottomOf="@+id/layLoginEmail"
+        app:startIconContentDescription="senha"
+        app:startIconDrawable="@drawable/ic_senha">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etLoginSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/regular"
+            android:hint="Senha"
+            android:inputType="textPassword"
+            android:text="testando"
+            android:textColor="@color/LightGrey" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.royrodriguez.transitionbutton.TransitionButton
+        android:id="@+id/btnVerificar"
+        android:layout_width="193dp"
+        android:layout_height="51dp"
+        android:text="Verificar"
+        android:textAllCaps="false"
+        android:textColor="@color/LightGrey"
+        app:defaultColor="@color/BlueApp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/gdlLoginDireita"
+        app:layout_constraintStart_toStartOf="@+id/gdlLoginEsquerda"
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
+        app:loaderColor="@android:color/white" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gdlLoginDireita"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.87" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/ic_login"
+        app:layout_constraintEnd_toStartOf="@+id/gdlLoginDireita"
+        app:layout_constraintStart_toStartOf="@+id/gdlLoginEsquerda"
+        app:layout_constraintTop_toTopOf="@+id/gdlLoginTopo" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

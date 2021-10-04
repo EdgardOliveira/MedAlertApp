@@ -19,16 +19,16 @@ public class ReceitasViewModel extends AndroidViewModel {
         appRepository = new AppRepository(application);
     }
 
-    public LiveData<List<Receita>> recuperarReceitas(String codigo) {
+    public LiveData<List<Receita>> recuperarReceitas() {
         //Dispara uma requisição de dados pra API
-        obterReceitas(codigo);
+        obterReceitas();
 
         //Carrega os dados do banco de dados
         return recuperarReceitasBD();
     }
 
-    private void obterReceitas(String codigo){
-        appRepository.consultarReceitasAPI(codigo);
+    private void obterReceitas(){
+        appRepository.obterConsultasAPI();
     }
 
     public LiveData<List<Receita>> recuperarReceitasBD(){
