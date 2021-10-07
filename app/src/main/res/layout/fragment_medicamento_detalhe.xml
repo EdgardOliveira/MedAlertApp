@@ -7,16 +7,31 @@
     android:background="@color/DarkerGrey"
     tools:context=".ui.medicamento.MedicamentoDetalheFragment">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gdlMedicamentoDetalheEsq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gdlMedicamentoDetalheDir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.90" />
+
     <ImageButton
         android:id="@+id/ibFoto"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="64dp"
         android:scaleType="fitXY"
         android:src="@drawable/ic_barcode"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvOrientacoes" />
 
     <TextView
         android:id="@+id/tvNome"
@@ -116,10 +131,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Farmacêutica"
+        android:textColor="@color/MediumGrey"
         app:layout_constraintBottom_toTopOf="@+id/ibFoto"
         app:layout_constraintEnd_toEndOf="@+id/ibFoto"
-        app:layout_constraintStart_toStartOf="@+id/ibFoto"
-        android:textColor="@color/MediumGrey" />
+        app:layout_constraintStart_toStartOf="@+id/ibFoto" />
 
     <Button
         android:id="@+id/btnBula"
@@ -153,5 +168,95 @@
         app:layout_constraintEnd_toEndOf="@+id/btnBula"
         app:layout_constraintStart_toStartOf="@+id/btnBula"
         app:layout_constraintTop_toBottomOf="@+id/btnBula" />
+
+    <TextView
+        android:id="@+id/tvUso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Uso: Oral"
+        android:textColor="@color/MediumGrey"
+        app:layout_constraintStart_toStartOf="@+id/gdlMedicamentoDetalheEsq"
+        app:layout_constraintTop_toTopOf="@+id/guideline11" />
+
+    <TextView
+        android:id="@+id/tvTratamento"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Tramento: Dores de cabeça"
+        android:textColor="@color/MediumGrey"
+        app:layout_constraintEnd_toStartOf="@+id/gdlMedicamentoDetalheDir"
+        app:layout_constraintStart_toStartOf="@+id/gdlMedicamentoDetalheEsq"
+        app:layout_constraintTop_toBottomOf="@+id/tvUso" />
+
+    <TextView
+        android:id="@+id/tvFormula"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fórmula: Paracetamol"
+        android:textColor="@color/MediumGrey"
+        app:layout_constraintStart_toStartOf="@+id/gdlMedicamentoDetalheEsq"
+        app:layout_constraintTop_toBottomOf="@+id/tvTratamento" />
+
+    <TextView
+        android:id="@+id/tvDosagem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dosagem: 100mg/ml"
+        android:textColor="@color/MediumGrey"
+        app:layout_constraintStart_toStartOf="@+id/gdlMedicamentoDetalheEsq"
+        app:layout_constraintTop_toBottomOf="@+id/tvFormula" />
+
+    <TextView
+        android:id="@+id/tvConcentracao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Concentração: gotas"
+        android:textColor="@color/MediumGrey"
+        app:layout_constraintStart_toStartOf="@+id/gdlMedicamentoDetalheEsq"
+        app:layout_constraintTop_toBottomOf="@+id/tvDosagem" />
+
+    <TextView
+        android:id="@+id/tvQuantidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quantidade: 30"
+        android:textColor="@color/MediumGrey"
+        app:layout_constraintStart_toStartOf="@+id/gdlMedicamentoDetalheEsq"
+        app:layout_constraintTop_toBottomOf="@+id/tvConcentracao" />
+
+    <TextView
+        android:id="@+id/tvDias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dias: 3"
+        android:textColor="@color/MediumGrey"
+        app:layout_constraintStart_toStartOf="@+id/gdlMedicamentoDetalheEsq"
+        app:layout_constraintTop_toBottomOf="@+id/tvQuantidade" />
+
+    <TextView
+        android:id="@+id/tvFrequenciaH"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Frequência: 8h"
+        android:textColor="@color/MediumGrey"
+        app:layout_constraintStart_toStartOf="@+id/gdlMedicamentoDetalheEsq"
+        app:layout_constraintTop_toBottomOf="@+id/tvDias" />
+
+    <TextView
+        android:id="@+id/tvOrientacoes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Orientações: Tomar 20 gotas de 8 em 8 horas por três dias"
+        android:textColor="@color/MediumGrey"
+        app:layout_constraintEnd_toStartOf="@+id/gdlMedicamentoDetalheDir"
+        app:layout_constraintStart_toStartOf="@+id/gdlMedicamentoDetalheEsq"
+        app:layout_constraintTop_toBottomOf="@+id/tvFrequenciaH" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.02" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

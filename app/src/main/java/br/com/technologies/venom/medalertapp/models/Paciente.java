@@ -12,19 +12,20 @@ import java.util.Date;
 @Entity(
         tableName = "pacientes",
         indices = {
-                @Index("nome"),
+                @Index("dataNascimento"),
         }
 )
 public class Paciente {
     @PrimaryKey
     @NonNull
     private String id;
-    private String nome;
     private Date dataNascimento;
     @Embedded(prefix = "conv_")
     private Convenio convenio;
     @Embedded(prefix = "end_")
     private Endereco endereco;
+    @Embedded(prefix = "usr_")
+    private Usuario usuario;
 
     @NonNull
     public String getId() {
@@ -33,14 +34,6 @@ public class Paciente {
 
     public void setId(@NonNull String id) {
         this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public Date getDataNascimento() {
@@ -67,15 +60,23 @@ public class Paciente {
         this.endereco = endereco;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     public Paciente() {
     }
 
     @Ignore
-    public Paciente(@NonNull String id, String nome, Date dataNascimento, Convenio convenio, Endereco endereco) {
+    public Paciente(@NonNull String id, Date dataNascimento, Convenio convenio, Endereco endereco, Usuario usuario) {
         this.id = id;
-        this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.convenio = convenio;
         this.endereco = endereco;
+        this.usuario = usuario;
     }
 }

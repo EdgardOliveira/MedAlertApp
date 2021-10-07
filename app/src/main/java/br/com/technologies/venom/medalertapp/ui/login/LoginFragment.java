@@ -22,6 +22,7 @@ import com.royrodriguez.transitionbutton.TransitionButton;
 
 import br.com.technologies.venom.medalertapp.R;
 import br.com.technologies.venom.medalertapp.databinding.FragmentLoginBinding;
+import br.com.technologies.venom.medalertapp.models.Medicamento;
 import br.com.technologies.venom.medalertapp.models.Preferencia;
 import br.com.technologies.venom.medalertapp.models.Usuario;
 import br.com.technologies.venom.medalertapp.models.UsuarioResp;

@@ -58,6 +58,7 @@ public class Preferencia {
             try {
                 Log.d(TAG, "recuperar: Recuperando as preferências do arquivo...");
                 usuario = new Usuario(
+                        sharedPreferences.getString("nome", null),
                         sharedPreferences.getString("email", null),
                         sharedPreferences.getString("senha", null),
                         sharedPreferences.getString("token", null)
@@ -83,6 +84,7 @@ public class Preferencia {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         //Gravando os dados de preferências
+        editor.putString("nome",  usuario.getNome());
         editor.putString("email", usuario.getEmail());
         editor.putString("senha", usuario.getSenha());
         editor.putString("token", usuario.getToken());
@@ -105,6 +107,7 @@ public class Preferencia {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         //Removendo os dados de preferências
+        editor.remove("nome");
         editor.remove("email");
         editor.remove("senha");
         editor.remove("token");

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -15,6 +16,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import br.com.technologies.venom.medalertapp.R;
 import br.com.technologies.venom.medalertapp.databinding.FragmentHomeBinding;
+import br.com.technologies.venom.medalertapp.models.Paciente;
+import br.com.technologies.venom.medalertapp.models.Usuario;
 
 import static br.com.technologies.venom.medalertapp.utils.Rotinas.trocarTela;
 
@@ -24,7 +27,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private View view;
     private FragmentHomeBinding binding;
     private CardView cvReceitas, cvCartao, cvDispositivo, cvSair;
-
+    private TextView tvNomePaciente;
+    private Paciente paciente;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -37,6 +41,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         cvCartao = binding.cvCartao;
         cvDispositivo = binding.cvDispenser;
         cvSair = binding.cvSair;
+        tvNomePaciente = binding.tvNomePaciente;
 
         cvReceitas.setOnClickListener(this);
         cvCartao.setOnClickListener(this);
@@ -45,10 +50,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         return view;
     }
 
+    private void atualizarDadosTela(){
+        String nome[] = paciente.getUsuario().getNome().split("");
+
+        if (!nome[0].isEmpty())
+            tvNomePaciente.setText(nome[0]);
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 
     @Override

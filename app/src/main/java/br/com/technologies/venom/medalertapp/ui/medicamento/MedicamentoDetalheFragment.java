@@ -24,10 +24,11 @@ import com.google.zxing.integration.android.IntentResult;
 
 import br.com.technologies.venom.medalertapp.R;
 import br.com.technologies.venom.medalertapp.databinding.FragmentMedicamentoDetalheBinding;
+import br.com.technologies.venom.medalertapp.models.Medicamento;
 import br.com.technologies.venom.medalertapp.models.MedicamentoDetalhe;
 import br.com.technologies.venom.medalertapp.models.MedicamentoDetalheResp;
 
-public class MedicamentoDetalheFragment  extends Fragment implements View.OnClickListener {
+public class MedicamentoDetalheFragment extends Fragment implements View.OnClickListener {
 
     private MedicamentosViewModel medicamentosViewModel;
     private FragmentMedicamentoDetalheBinding binding;
@@ -36,6 +37,8 @@ public class MedicamentoDetalheFragment  extends Fragment implements View.OnClic
     private TextView tvNome, tvFarmaceutica, tvPrecoMin, tvPrecoMed, tvPrecoMax;
     private MedicamentoDetalhe medicamentoDetalhe;
     private ProgressBar pbStatus;
+    private Medicamento medicamento;
+    private TextView tvUso, tvTratamento, tvFormula, tvDosagem, tvConcentracao, tvQuantidade, tvDias, tvfrequenciaH, tvOrientacoes;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -43,7 +46,7 @@ public class MedicamentoDetalheFragment  extends Fragment implements View.OnClic
 
         binding = FragmentMedicamentoDetalheBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
+        medicamento = (Medicamento) getArguments().getParcelable("medicamento");
         medicamentoDetalhe = new MedicamentoDetalhe();
 
         ibFoto = binding.ibFoto;
@@ -52,6 +55,15 @@ public class MedicamentoDetalheFragment  extends Fragment implements View.OnClic
         tvPrecoMin = binding.tvPrecoMin;
         tvPrecoMed = binding.tvPrecoMed;
         tvPrecoMax = binding.tvPrecoMax;
+        tvUso = binding.tvUso;
+        tvTratamento = binding.tvTratamento;
+        tvFormula = binding.tvFormula;
+        tvDosagem = binding.tvDosagem;
+        tvConcentracao = binding.tvConcentracao;
+        tvQuantidade = binding.tvQuantidade;
+        tvDias = binding.tvDias;
+        tvfrequenciaH = binding.tvFrequenciaH;
+        tvOrientacoes = binding.tvOrientacoes;
         btnBula = binding.btnBula;
         pbStatus = binding.progressBar;
 
@@ -68,7 +80,7 @@ public class MedicamentoDetalheFragment  extends Fragment implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.ibFoto:
                 lerCodigoBarrasQRCode();
                 break;
@@ -82,11 +94,11 @@ public class MedicamentoDetalheFragment  extends Fragment implements View.OnClic
         abrirPagina(getActivity(), medicamentoDetalhe.getBula());
     }
 
-    private void consultar(String codigo){
+    private void consultar(String codigo) {
         medicamentosViewModel.consultarMedicamentoPorCodigo(codigo).observe(getViewLifecycleOwner(), new Observer<MedicamentoDetalheResp>() {
             @Override
             public void onChanged(MedicamentoDetalheResp medicamentoDetalheResp) {
-                if (medicamentoDetalheResp.getSucesso()){
+                if (medicamentoDetalheResp.getSucesso()) {
                     setMedicamento(medicamentoDetalheResp.getMedicamentoDetalhe());
                 } else {
                     Toast.makeText(getActivity(), "Não conseguimos dados deste medicamento", Toast.LENGTH_SHORT).show();
@@ -96,26 +108,40 @@ public class MedicamentoDetalheFragment  extends Fragment implements View.OnClic
         });
     }
 
-    private void setMedicamento(MedicamentoDetalhe medicamentoDetalhe){
+    private void setMedicamento(MedicamentoDetalhe medicamentoDetalhe) {
         this.medicamentoDetalhe = medicamentoDetalhe;
         atualizarDadosTela();
     }
 
-    private void atualizarDadosTela(){
-        try{
-            //Colocar a foto da caixa no image button
-            Glide.with(getParentFragment())
-                    .load(medicamentoDetalhe.getImagemCaixa())
-                    .placeholder(R.drawable.ic_medicamentos)
-                    .fitCenter()
-                    .into(ibFoto);
-            tvFarmaceutica.setText(medicamentoDetalhe.getLaboratorio());
-            tvNome.setText(medicamentoDetalhe.getNome());
-            tvPrecoMin.setText(String.valueOf(medicamentoDetalhe.getPrecoMin()));
-            tvPrecoMed.setText(String.valueOf(medicamentoDetalhe.getPrecoMed()));
-            tvPrecoMax.setText(String.valueOf(medicamentoDetalhe.getPrecoMax()));
-            pbStatus.setVisibility(View.INVISIBLE);
-        }catch (Exception e){
+    private void atualizarDadosTela() {
+        try {
+            if (medicamento != null) {
+                tvUso.setText("Uso: " + medicamento.getUso());
+                tvTratamento.setText("Tratamento: " + medicamento.getTratamento());
+                tvFormula.setText("Fórmula: " + medicamento.getFormula());
+                tvDosagem.setText("Dosagem: " + medicamento.getDosagem());
+                tvConcentracao.setText("Concentração: " + medicamento.getConcentracao());
+                tvQuantidade.setText("Quantidade: " + String.valueOf(medicamento.getQuantidade()));
+                tvDias.setText("Dias: " + String.valueOf(medicamento.getDias()));
+                tvfrequenciaH.setText("Frequência de uso: " + String.valueOf(medicamento.getFrequenciaH()));
+                tvOrientacoes.setText("Orientaçòes: " + medicamento.getOrientacoes());
+            }
+
+            if (medicamentoDetalhe != null) {
+                //Colocar a foto da caixa no image button
+                Glide.with(getParentFragment())
+                        .load(medicamentoDetalhe.getImagemCaixa())
+                        .placeholder(R.drawable.ic_medicamentos)
+                        .fitCenter()
+                        .into(ibFoto);
+                tvFarmaceutica.setText(medicamentoDetalhe.getLaboratorio());
+                tvNome.setText(medicamentoDetalhe.getNome());
+                tvPrecoMin.setText(String.valueOf(medicamentoDetalhe.getPrecoMin()));
+                tvPrecoMed.setText(String.valueOf(medicamentoDetalhe.getPrecoMed()));
+                tvPrecoMax.setText(String.valueOf(medicamentoDetalhe.getPrecoMax()));
+                pbStatus.setVisibility(View.INVISIBLE);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
