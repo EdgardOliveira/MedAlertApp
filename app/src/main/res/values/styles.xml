@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CampoTextoGrande" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/MedGrey</item>
+        <item name="android:textSize">@dimen/text_large_size</item>
+    </style>
+
+    <style name="CampoTextoForte" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/MedGrey</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CampoTexto" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/MedGrey</item>
+        <item name="android:textSize">@dimen/text_size</item>
+    </style>
+
+    <style name="CampoTextoTitulo" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/MedGrey</item>
+        <item name="android:textSize">@dimen/text_small_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>
