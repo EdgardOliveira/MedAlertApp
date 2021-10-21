@@ -18,6 +18,7 @@ import br.com.technologies.venom.medalertapp.R;
 import br.com.technologies.venom.medalertapp.databinding.FragmentHomeBinding;
 import br.com.technologies.venom.medalertapp.models.Paciente;
 import br.com.technologies.venom.medalertapp.models.Usuario;
+import br.com.technologies.venom.medalertapp.models.Preferencia;
 
 import static br.com.technologies.venom.medalertapp.utils.Rotinas.trocarTela;
 
@@ -29,10 +30,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private CardView cvReceitas, cvCartao, cvDispositivo, cvSair;
     private TextView tvNomePaciente;
     private Paciente paciente;
+    private Preferencia preferencias;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+
+        preferencias = Preferencia.recuperar(getContext());
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         view = binding.getRoot();
@@ -78,6 +82,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 trocarTela(getParentFragment(), R.id.action_nav_home_to_nav_cartao);
                 break;
             case R.id.cvSair:
+                preferencias.limpar();
                 trocarTela(getParentFragment(), R.id.action_nav_home_to_nav_login);
         }
     }
