@@ -8,81 +8,365 @@
     app:background="@color/BlueApp"
     tools:context=".ui.cartao.CartaoFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="700dp"
+        android:layout_height="400dp"
+        android:rotation="90"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/gdlCartaoEsquerda"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.05" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gdlCartaoEsquerda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/gdlCartaoDireita"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gdlCartaoDireita"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/gdlCartaoTopo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.05" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gdlCartaoTopo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/gdlCartaoRodape"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.95" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gdlCartaoRodape"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.95" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:cardBackgroundColor="@color/DarkerGrey"
-        app:cardCornerRadius="22dp"
-        app:layout_constraintBottom_toTopOf="@+id/gdlCartaoRodape"
-        app:layout_constraintEnd_toStartOf="@+id/gdlCartaoDireita"
-        app:layout_constraintStart_toStartOf="@+id/gdlCartaoEsquerda"
-        app:layout_constraintTop_toTopOf="@+id/gdlCartaoTopo">
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:cardBackgroundColor="@color/DarkerGrey"
+            app:cardCornerRadius="22dp"
+            app:layout_constraintBottom_toTopOf="@+id/gdlCartaoRodape"
+            app:layout_constraintEnd_toStartOf="@+id/gdlCartaoDireita"
+            app:layout_constraintStart_toStartOf="@+id/gdlCartaoEsquerda"
+            app:layout_constraintTop_toTopOf="@+id/gdlCartaoTopo">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="200dp"
-                android:layout_height="75dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="40dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/ic_umined" />
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gdlConteudoInicio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.01" />
 
-            <TextView
-                android:id="@+id/tvCartaoCodigo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/credit"
-                android:text="888884735077730018"
-                android:textColor="@color/MedGrey"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="@+id/tvCartaoCodigoTitulo"
-                app:layout_constraintTop_toBottomOf="@+id/tvCartaoCodigoTitulo" />
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gdlConteudoEsquerda"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.80" />
 
-            <TextView
-                android:id="@+id/tvCartaoCodigoTitulo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginBottom="24dp"
-                android:text="Código de Identificação"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageView4" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gdlConteudoMeio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.50" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gdlConteudoFim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.99" />
+
+                <TextView
+                    android:id="@+id/tvNomePaciente"
+                    style="@style/CampoTextoGrande"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="8dp"
+                    android:ellipsize="end"
+                    android:gravity="bottom"
+                    android:maxLines="1"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/tvDataNascimento"
+                    app:layout_constraintEnd_toStartOf="@id/gdlConteudoEsquerda"
+                    app:layout_constraintStart_toStartOf="@id/gdlConteudoInicio"
+                    app:layout_constraintTop_toTopOf="@id/tvDataNascimentoTitulo"
+                    tools:text="JOÃO DA SILVA DE SOUZA" />
+
+                <TextView
+                    android:id="@+id/tvDataNascimentoTitulo"
+                    style="@style/CampoTextoTitulo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/nascimento_titulo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/gdlConteudoEsquerda"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvDataNascimento"
+                    style="@style/CampoTextoForte"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/gdlConteudoEsquerda"
+                    app:layout_constraintTop_toBottomOf="@id/tvDataNascimentoTitulo"
+                    tools:text="DD/MM/AAAA" />
+
+                <TextView
+                    android:id="@+id/tvProdutoTitulo"
+                    style="@style/CampoTextoTitulo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/produto_titulo"
+                    app:layout_constraintEnd_toStartOf="@id/gdlConteudoMeio"
+                    app:layout_constraintStart_toStartOf="@id/gdlConteudoInicio"
+                    app:layout_constraintTop_toBottomOf="@id/tvNomePaciente" />
+
+                <TextView
+                    android:id="@+id/tvProduto"
+                    style="@style/CampoTextoForte"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toStartOf="@id/gdlConteudoMeio"
+                    app:layout_constraintStart_toStartOf="@id/gdlConteudoInicio"
+                    app:layout_constraintTop_toBottomOf="@id/tvProdutoTitulo"
+                    tools:text="123" />
+
+                <TextView
+                    android:id="@+id/tvCodigoIdentificacaoTitulo"
+                    style="@style/CampoTextoTitulo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/codigo_de_identificacao_titulo"
+                    app:layout_constraintEnd_toStartOf="@id/gdlConteudoFim"
+                    app:layout_constraintStart_toEndOf="@id/gdlConteudoMeio"
+                    app:layout_constraintTop_toTopOf="@id/tvProdutoTitulo" />
+
+                <TextView
+                    android:id="@+id/tvCodigoIdentificacao"
+                    style="@style/CampoTextoForte"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintEnd_toStartOf="@id/gdlConteudoFim"
+                    app:layout_constraintStart_toEndOf="@id/gdlConteudoMeio"
+                    app:layout_constraintTop_toBottomOf="@id/tvCodigoIdentificacaoTitulo"
+                    tools:text="9999 1234 8888 0012" />
+
+                <TextView
+                    android:id="@+id/tvPlanoTitulo"
+                    style="@style/CampoTextoTitulo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/plano_titulo"
+                    app:layout_constraintEnd_toStartOf="@id/gdlConteudoMeio"
+                    app:layout_constraintStart_toStartOf="@id/gdlConteudoInicio"
+                    app:layout_constraintTop_toBottomOf="@id/tvProduto" />
+
+                <TextView
+                    android:id="@+id/tvPlano"
+                    style="@style/CampoTextoForte"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toStartOf="@id/gdlConteudoMeio"
+                    app:layout_constraintStart_toStartOf="@id/gdlConteudoInicio"
+                    app:layout_constraintTop_toBottomOf="@id/tvPlanoTitulo"
+                    tools:text="ESPECIAL 100" />
+
+                <TextView
+                    android:id="@+id/tvAcomodacaoTitulo"
+                    style="@style/CampoTextoTitulo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/acomodacao_titulo"
+                    app:layout_constraintEnd_toStartOf="@id/gdlConteudoEsquerda"
+                    app:layout_constraintStart_toEndOf="@id/gdlConteudoMeio"
+                    app:layout_constraintTop_toTopOf="@id/tvPlanoTitulo" />
+
+                <TextView
+                    android:id="@+id/tvAcomodacao"
+                    style="@style/CampoTextoForte"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintEnd_toEndOf="@id/tvAcomodacaoTitulo"
+                    app:layout_constraintStart_toStartOf="@id/tvAcomodacaoTitulo"
+                    app:layout_constraintTop_toBottomOf="@id/tvAcomodacaoTitulo"
+                    tools:text="APARTAMENTO" />
+
+                <TextView
+                    android:id="@+id/tvCnsTitulo"
+                    style="@style/CampoTextoTitulo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cns_titulo"
+                    app:layout_constraintEnd_toStartOf="@id/gdlConteudoFim"
+                    app:layout_constraintStart_toEndOf="@id/gdlConteudoEsquerda"
+                    app:layout_constraintTop_toTopOf="@id/tvPlanoTitulo" />
+
+                <TextView
+                    android:id="@+id/tvCns"
+                    style="@style/CampoTextoForte"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintEnd_toEndOf="@id/tvCnsTitulo"
+                    app:layout_constraintStart_toStartOf="@id/tvCnsTitulo"
+                    app:layout_constraintTop_toBottomOf="@id/tvCnsTitulo"
+                    tools:text="XXXX" />
+
+                <TextView
+                    android:id="@+id/tvCoberturaTitulo"
+                    style="@style/CampoTextoTitulo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/cobertura_titulo"
+                    app:layout_constraintEnd_toStartOf="@id/gdlConteudoFim"
+                    app:layout_constraintStart_toEndOf="@id/gdlConteudoInicio"
+                    app:layout_constraintTop_toBottomOf="@id/tvPlano" />
+
+                <TextView
+                    android:id="@+id/tvCobertura"
+                    style="@style/CampoTextoForte"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintEnd_toStartOf="@id/gdlConteudoFim"
+                    app:layout_constraintStart_toStartOf="@id/tvCoberturaTitulo"
+                    app:layout_constraintTop_toBottomOf="@id/tvCoberturaTitulo"
+                    tools:text="AMBULATORIAL + HOSPITALAR" />
+
+                <TextView
+                    android:id="@+id/tvEmpresaTitulo"
+                    style="@style/CampoTextoTitulo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/empresa_titulo"
+                    app:layout_constraintEnd_toStartOf="@id/gdlConteudoFim"
+                    app:layout_constraintStart_toEndOf="@id/gdlConteudoInicio"
+                    app:layout_constraintTop_toBottomOf="@id/tvCobertura" />
+
+                <TextView
+                    android:id="@+id/tvEmpresa"
+                    style="@style/CampoTextoForte"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@id/gdlConteudoFim"
+                    app:layout_constraintStart_toStartOf="@id/tvEmpresaTitulo"
+                    app:layout_constraintTop_toBottomOf="@id/tvEmpresaTitulo"
+                    tools:text="DRUGGERY COMPANY" />
+
+                <TextView
+                    android:id="@+id/tvCarenciasConteudo1"
+                    style="@style/CampoTexto"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/central_de_servicos_de_saude_descricao"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@id/gdlConteudoMeio"
+                    app:layout_constraintStart_toStartOf="@id/gdlConteudoInicio"
+                    app:layout_constraintTop_toBottomOf="@id/tvEmpresa" />
+
+                <TextView
+                    android:id="@+id/tvCarenciasConteudo2"
+                    style="@style/CampoTexto"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/capitais_e_regioes_metropolitanas_telefone_descricao"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@id/gdlConteudoMeio"
+                    app:layout_constraintStart_toStartOf="@id/tvCarenciasConteudo1"
+                    app:layout_constraintTop_toBottomOf="@id/tvCarenciasConteudo1" />
+
+                <TextView
+                    android:id="@+id/tvCarenciasConteudo3"
+                    style="@style/CampoTexto"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/demais_regioes_telefone_descricao"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@id/gdlConteudoMeio"
+                    app:layout_constraintStart_toStartOf="@id/tvCarenciasConteudo1"
+                    app:layout_constraintTop_toBottomOf="@id/tvCarenciasConteudo2" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/medalert_logo"
+                    app:layout_constraintBottom_toTopOf="@+id/tvRodapeTitulo"
+                    app:layout_constraintEnd_toStartOf="@id/gdlConteudoFim"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@id/gdlConteudoMeio"
+                    app:layout_constraintTop_toBottomOf="@id/tvEmpresa"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/tvRodapeTitulo"
+                    style="@style/CampoTexto"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/apresentar_documento_de_identificacao_com_foto_descricao"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/gdlConteudoFim"
+                    app:layout_constraintStart_toStartOf="@id/gdlConteudoInicio"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCarenciasConteudo3" />
+
+                <TextView
+                    android:id="@+id/tvRodape"
+                    style="@style/CampoTextoTitulo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center"
+                    android:text="@string/referenciado_consultar_validade_nos_canais_de_atendimento_descricao"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/gdlConteudoFim"
+                    app:layout_constraintStart_toStartOf="@id/gdlConteudoInicio"
+                    app:layout_constraintTop_toBottomOf="@+id/tvRodapeTitulo"
+                    app:layout_constraintVertical_bias="0.0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

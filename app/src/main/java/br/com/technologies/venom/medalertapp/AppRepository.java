@@ -42,8 +42,9 @@ public class AppRepository {
     private PacienteDAO pacienteDAO;
     private MedicamentoDAO medicamentoDAO;
     private ReceitaDAO receitaDAO;
-    private MutableLiveData<UsuarioResp> usuarioAutenticado = new MutableLiveData<>();
+    private MutableLiveData<UsuarioResp> usuarioAutenticadoResp = new MutableLiveData<>();
     private MutableLiveData<MedicamentoDetalheResp> detalhesMedicamento = new MutableLiveData<>();
+    private MutableLiveData<Usuario> usuarioAutenticado = new MutableLiveData<>();
 
     //construtor
     public AppRepository(Application application) {
@@ -84,6 +85,15 @@ public class AppRepository {
                         Log.d(Constraints.TAG, "onResponse: convertendo a resposta em uma lista de objetos...");
                         Log.d(Constraints.TAG, "onResponse: Usuário autenticado com sucesso!");
                         usuarioAut = response.body();
+
+                        // Nome fictício de usuário para evitar atributo vazio
+                        if (usuario.getNome() == null) {
+                            usuario.setNome("João Gomes Cantor");
+                        }
+
+                        usuarioAutenticado.setValue(usuario);
+                        Log.d(TAG, "usuarioAutenticado: " + usuarioAut.getToken() + " - " + usuarioAut.getMensagem());
+                        Log.d(TAG, "usuario: " + usuario.getNome() + " - " + usuario.getEmail() + " - " + usuario.getSenha() + " - " + usuario.getToken());
                         break;
                     case 401: //Código 401 - Falhou na autenticação
                         Log.d(Constraints.TAG, "onResponse: Credenciais inválidas!");
@@ -94,7 +104,7 @@ public class AppRepository {
                         usuarioAut.setMensagem("Servidor/Serviço indisponível");
                         break;
                 }
-                usuarioAutenticado.postValue(usuarioAut);
+                usuarioAutenticadoResp.postValue(usuarioAut);
             }
 
             @Override
@@ -114,17 +124,17 @@ public class AppRepository {
                         Log.d(Constraints.TAG, "onResponse: Ocorreu um erro ao tentar fazer a requisição de fazer login");
                         usuarioAut.setMensagem(t.getLocalizedMessage());
                 }
-                usuarioAutenticado.postValue(usuarioAut);
+                usuarioAutenticadoResp.postValue(usuarioAut);
             }
         });
 
-        return usuarioAutenticado;
+        return usuarioAutenticadoResp;
     }
 
     /**
      * Objetivo: Função responsável por obter os dados de consultas médicas (Receitas e Medicamentos)
      */
-    public void obterConsultasAPI(){
+    public void obterConsultasAPI() {
         Call<ConsultasResp> call = restService.obterConsultas(token);
 
         call.enqueue(new Callback<ConsultasResp>() {
@@ -137,6 +147,11 @@ public class AppRepository {
                         for (Consulta consulta : consultaList) {
                             Paciente paciente = consulta.getPaciente();
                             cadastrarPaciente(paciente);
+
+                            if (paciente.getUsuario() == null) {
+                                Usuario usuario = usuarioAutenticado.getValue();
+                                paciente.setUsuario(usuario);
+                            }
 
                             Receita receita = consulta.getReceita();
                             cadastrarReceita(receita);
