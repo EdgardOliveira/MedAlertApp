@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
 import br.com.technologies.venom.medalertapp.AppRepository;
+import br.com.technologies.venom.medalertapp.MedAlertApplication;
 
 public class HomeViewModel extends AndroidViewModel {
 
@@ -13,6 +14,6 @@ public class HomeViewModel extends AndroidViewModel {
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
-        appRepository = new AppRepository(application);
+        appRepository = MedAlertApplication.getAppRepository(getApplication());
     }
 }

@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import br.com.technologies.venom.medalertapp.AppRepository;
+import br.com.technologies.venom.medalertapp.MedAlertApplication;
 import br.com.technologies.venom.medalertapp.models.Paciente;
 
 public class CartaoViewModel extends AndroidViewModel {
@@ -18,7 +19,7 @@ public class CartaoViewModel extends AndroidViewModel {
 
     public CartaoViewModel(@NonNull Application application) {
         super(application);
-        appRepository = new AppRepository(getApplication());
+        appRepository = MedAlertApplication.getAppRepository(getApplication());
 
         appRepository.obterConsultasAPI();
         pacientes = appRepository.listarPacientes();

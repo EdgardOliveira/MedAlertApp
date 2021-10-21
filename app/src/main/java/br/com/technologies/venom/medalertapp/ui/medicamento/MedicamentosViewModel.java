@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import br.com.technologies.venom.medalertapp.AppRepository;
+import br.com.technologies.venom.medalertapp.MedAlertApplication;
 import br.com.technologies.venom.medalertapp.models.Medicamento;
 import br.com.technologies.venom.medalertapp.models.MedicamentoDetalheResp;
 
@@ -17,7 +18,7 @@ public class MedicamentosViewModel extends AndroidViewModel {
 
     public MedicamentosViewModel(@NonNull Application application) {
         super(application);
-        appRepository = new AppRepository(application);
+        appRepository = MedAlertApplication.getAppRepository(getApplication());
     }
 
     public LiveData<List<Medicamento>> recuperarMedicamentos(String receitaId) {

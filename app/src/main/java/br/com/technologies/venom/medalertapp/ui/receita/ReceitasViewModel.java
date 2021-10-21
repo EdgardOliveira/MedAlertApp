@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import br.com.technologies.venom.medalertapp.AppRepository;
+import br.com.technologies.venom.medalertapp.MedAlertApplication;
 import br.com.technologies.venom.medalertapp.models.Receita;
 
 public class ReceitasViewModel extends AndroidViewModel {
@@ -16,7 +17,7 @@ public class ReceitasViewModel extends AndroidViewModel {
 
     public ReceitasViewModel(@NonNull Application application) {
         super(application);
-        appRepository = new AppRepository(application);
+        appRepository = MedAlertApplication.getAppRepository(getApplication());
     }
 
     public LiveData<List<Receita>> recuperarReceitas() {
