@@ -8,4 +8,18 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
+
+    <string name="nascimento_titulo">NASCIMENTO</string>
+    <string name="produto_titulo">PRODUTO</string>
+    <string name="codigo_de_identificacao_titulo">CÓDIGO DE IDENTIFICAÇÃO</string>
+    <string name="plano_titulo">PLANO</string>
+    <string name="acomodacao_titulo">ACOMODAÇÃO</string>
+    <string name="cns_titulo">CNS</string>
+    <string name="cobertura_titulo">COBERTURA</string>
+    <string name="empresa_titulo">EMPRESA</string>
+    <string name="central_de_servicos_de_saude_descricao">CENTRAL DE SERVIÇOS DE SAÚDE</string>
+    <string name="capitais_e_regioes_metropolitanas_telefone_descricao">CAPITAIS E REGIÕES METROPOLITANAS: 9999 0001</string>
+    <string name="demais_regioes_telefone_descricao">DEMAIS REGIÕES: 9999 0002</string>
+    <string name="apresentar_documento_de_identificacao_com_foto_descricao">APRESENTAR DOCUMENTO DE IDENTIFICAÇÃO COM FOTO</string>
+    <string name="referenciado_consultar_validade_nos_canais_de_atendimento_descricao">REFERENCIADO - CONSULTAR VALIDADE NOS CANAIS DE ATENDIMENTO</string>
 </resources>
