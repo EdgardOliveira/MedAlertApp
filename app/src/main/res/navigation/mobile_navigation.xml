@@ -93,6 +93,9 @@
         <action
             android:id="@+id/action_nav_login_to_nav_splash_screen"
             app:destination="@id/nav_splash_screen" />
+        <argument
+            android:name="usuario"
+            app:argType="br.com.technologies.venom.medalertapp.models.Usuario" />
     </fragment>
 
 </navigation>

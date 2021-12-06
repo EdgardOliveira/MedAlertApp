@@ -12,7 +12,6 @@ import br.com.technologies.venom.medalertapp.AppRepository;
 import br.com.technologies.venom.medalertapp.models.Paciente;
 
 public class CartaoViewModel extends AndroidViewModel {
-
     private AppRepository appRepository;
     private LiveData<List<Paciente>> pacientes;
 

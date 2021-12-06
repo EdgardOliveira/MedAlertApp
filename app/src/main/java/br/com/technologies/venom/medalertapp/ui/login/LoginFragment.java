@@ -2,6 +2,7 @@ package br.com.technologies.venom.medalertapp.ui.login;
 
 import static br.com.technologies.venom.medalertapp.utils.Constantes.TAG;
 import static br.com.technologies.venom.medalertapp.utils.Rotinas.trocarTela;
+import static br.com.technologies.venom.medalertapp.utils.Rotinas.trocarTelaComExtra;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -109,13 +110,16 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onChanged(UsuarioResp usuarioResp) {
                 if (usuarioResp.isSucesso()) {
+                    usuario.setNome(usuarioResp.getNome());
                     usuario.setToken(usuarioResp.getToken());
                     preferencias.salvar(usuario);
                     Toast.makeText(getContext(), "Usuário autenticado com sucesso!", Toast.LENGTH_SHORT).show();
                     btnVerificar.stopAnimation(TransitionButton.StopAnimationStyle.EXPAND, new TransitionButton.OnAnimationStopEndListener() {
                         @Override
                         public void onAnimationStopEnd() {
-                            trocarTela(getParentFragment(), R.id.action_nav_login_to_nav_home);
+                            Bundle bundle = new Bundle();
+                            bundle.putParcelable("usuario", usuario);
+                            trocarTelaComExtra(getParentFragment(), R.id.action_nav_login_to_nav_home, bundle);
                         }
                     });
                 } else{

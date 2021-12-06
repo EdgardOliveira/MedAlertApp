@@ -19,7 +19,6 @@ import br.com.technologies.venom.medalertapp.models.Medicamento;
 
 public class MedicamentoViewHolder extends RecyclerView.ViewHolder {
     //atributos
-    public CardView cvReceita;
     public TextView tvRemedio, tvRemedioTitulo, tvFormula, tvFormulaTitulo, tvDosagem, tvDosagemTitulo, tvHora01, tvHora02, tvHora03;
     public ImageView ivMedicamento;
     public Medicamento medicamento;

@@ -41,7 +41,7 @@
             android:id="@+id/tvNomePaciente"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Olá Edgard"
+            android:text="Olá Nome Paciente"
             android:textColor="@color/accent"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="@+id/ivLogotipo"
@@ -65,7 +65,7 @@
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/gridLayout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         app:alignmentMode="alignMargins"
         app:columnCount="2"
@@ -78,8 +78,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvReceitas"
-            android:layout_width="163dp"
-            android:layout_height="183dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="12dp"
             android:backgroundTint="@color/DarkerGrey"
             app:cardCornerRadius="12dp"
@@ -88,7 +88,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="16dp">
@@ -102,7 +102,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/regular"
@@ -114,8 +114,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvCartao"
-            android:layout_width="163dp"
-            android:layout_height="183dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="12dp"
             android:backgroundTint="@color/DarkerGrey"
             app:cardCornerRadius="12dp"
@@ -124,7 +124,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="16dp">
@@ -138,7 +138,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/regular"
@@ -150,8 +150,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvDispenser"
-            android:layout_width="163dp"
-            android:layout_height="183dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="12dp"
             android:backgroundTint="@color/DarkerGrey"
             app:cardCornerRadius="12dp"
@@ -160,7 +160,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="16dp">
@@ -174,7 +174,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/regular"
@@ -186,8 +186,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvSair"
-            android:layout_width="163dp"
-            android:layout_height="183dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="12dp"
             android:backgroundTint="@color/DarkerGrey"
             app:cardCornerRadius="12dp"
@@ -196,7 +196,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="16dp">
@@ -210,7 +210,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/regular"

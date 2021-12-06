@@ -36,11 +36,11 @@ public class MedicamentosFragment extends Fragment  implements SwipeRefreshLayou
 
     private View view;
     private FragmentMedicamentosBinding binding;
-    private RecyclerView recyclerView;
-    private MedicamentoAdapter adapter;
     private SwipeRefreshLayout swipeRefreshLayout;
     private Receita receita;
     private List<Medicamento> medicamentoList;
+    private MedicamentoAdapter adapter;
+    private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
 
     private MedicamentosViewModel medicamentosViewModel;

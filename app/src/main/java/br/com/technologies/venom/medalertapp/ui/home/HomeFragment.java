@@ -1,5 +1,9 @@
 package br.com.technologies.venom.medalertapp.ui.home;
 
+import static br.com.technologies.venom.medalertapp.utils.Rotinas.cancelarAlarme;
+import static br.com.technologies.venom.medalertapp.utils.Rotinas.configurarHoraMedicamento;
+import static br.com.technologies.venom.medalertapp.utils.Rotinas.trocarTela;
+
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,12 +18,13 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.util.Calendar;
+
 import br.com.technologies.venom.medalertapp.R;
 import br.com.technologies.venom.medalertapp.databinding.FragmentHomeBinding;
+import br.com.technologies.venom.medalertapp.models.Medicamento;
 import br.com.technologies.venom.medalertapp.models.Paciente;
 import br.com.technologies.venom.medalertapp.models.Usuario;
-
-import static br.com.technologies.venom.medalertapp.utils.Rotinas.trocarTela;
 
 public class HomeFragment extends Fragment implements View.OnClickListener{
 
@@ -28,7 +33,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private FragmentHomeBinding binding;
     private CardView cvReceitas, cvCartao, cvDispositivo, cvSair;
     private TextView tvNomePaciente;
-    private Paciente paciente;
+    private Usuario usuario;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -37,24 +42,59 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         view = binding.getRoot();
 
+        usuario = (Usuario) getArguments().getParcelable("usuario");
+
         cvReceitas = binding.cvReceitas;
         cvCartao = binding.cvCartao;
         cvDispositivo = binding.cvDispenser;
         cvSair = binding.cvSair;
         tvNomePaciente = binding.tvNomePaciente;
 
+        configurarActionBar();
+
+        atualizarDadosTela();
+
         cvReceitas.setOnClickListener(this);
         cvCartao.setOnClickListener(this);
         cvSair.setOnClickListener(this);
+        cvDispositivo.setOnClickListener(this);
 
         return view;
     }
 
-    private void atualizarDadosTela(){
-        String nome[] = paciente.getUsuario().getNome().split("");
+    private void configurarActionBar() {
+        String titulo = "Home";
+        String subtitulo = "Tela incial";
+        Drawable icone = getResources().getDrawable(R.drawable.ic_menu_camera);
 
-        if (!nome[0].isEmpty())
-            tvNomePaciente.setText(nome[0]);
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);              // Ligando a seta que volta para Activity pai
+        actionBar.setTitle(titulo);                             // Configurar o título
+        actionBar.setSubtitle(subtitulo);                       // Configurar o sub-título
+        actionBar.setDisplayShowHomeEnabled(true);              // Configurar a Home
+        actionBar.setLogo(icone);                               // Configurar o ícone que será exibido
+        actionBar.setDisplayUseLogoEnabled(false);              // Habilitar a exibição do ícone
+    }
+
+    private void atualizarDadosTela(){
+        if (usuario != null){
+            String nome = pegarPrimeiroNomePaciente();
+            if (nome != null )
+                tvNomePaciente.setText("Olá "+ nome);
+        }
+    }
+
+    private String pegarPrimeiroNomePaciente(){
+        if (usuario.getNome() != null){
+            //Array com nomes, separando pelo espaço
+            String nome[] = usuario.getNome().split(" ");
+
+            //A primeira posição do array vai armazenar o primeiro nome
+            if (!nome[0].isEmpty())
+                return nome[0];
+        }
+
+        return null;
     }
 
     @Override
@@ -77,9 +117,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             case R.id.cvCartao:
                 trocarTela(getParentFragment(), R.id.action_nav_home_to_nav_cartao);
                 break;
+            case R.id.cvDispenser:
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE + 1));
+                configurarHoraMedicamento(calendar.get(Calendar.HOUR),calendar.get(Calendar.MINUTE), getContext());
+                break;
             case R.id.cvSair:
                 homeViewModel.limparDados();
-                trocarTela(getParentFragment(), R.id.action_nav_home_to_nav_login);
+//                trocarTela(getParentFragment(), R.id.action_nav_home_to_nav_login);
+                cancelarAlarme(getContext());
         }
     }
 }

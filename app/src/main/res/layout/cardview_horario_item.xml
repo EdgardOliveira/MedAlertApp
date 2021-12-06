@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="2dp"
+    android:layout_marginRight="2dp"
+    android:layout_marginBottom="5dp"
+    app:cardBackgroundColor="@color/DarkGrey"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="6dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/tvHorarioData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="22/11/2021"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvHorarioHora01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="4dp"
+            android:text="02:00"
+            app:layout_constraintStart_toStartOf="@+id/tvHorarioData"
+            app:layout_constraintTop_toBottomOf="@+id/tvHorarioData" />
+
+        <TextView
+            android:id="@+id/tvHorarioHora02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="06:00"
+            app:layout_constraintStart_toEndOf="@+id/tvHorarioHora01"
+            app:layout_constraintTop_toTopOf="@+id/tvHorarioHora01" />
+
+        <TextView
+            android:id="@+id/tvHorarioHora03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="10:00"
+            app:layout_constraintStart_toEndOf="@+id/tvHorarioHora02"
+            app:layout_constraintTop_toTopOf="@+id/tvHorarioHora02" />
+
+        <TextView
+            android:id="@+id/tvHorarioHora04"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="14:00"
+            app:layout_constraintStart_toEndOf="@+id/tvHorarioHora03"
+            app:layout_constraintTop_toTopOf="@+id/tvHorarioHora03" />
+
+        <TextView
+            android:id="@+id/tvHorarioHora05"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="18:00"
+            app:layout_constraintStart_toEndOf="@+id/tvHorarioHora04"
+            app:layout_constraintTop_toTopOf="@+id/tvHorarioHora04" />
+
+        <TextView
+            android:id="@+id/tvHorarioHora06"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="22:00"
+            app:layout_constraintStart_toEndOf="@+id/tvHorarioHora05"
+            app:layout_constraintTop_toTopOf="@+id/tvHorarioHora05" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

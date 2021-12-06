@@ -15,11 +15,13 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+import br.com.technologies.venom.medalertapp.dao.HorarioDAO;
 import br.com.technologies.venom.medalertapp.dao.MedicamentoDAO;
 import br.com.technologies.venom.medalertapp.dao.PacienteDAO;
 import br.com.technologies.venom.medalertapp.dao.ReceitaDAO;
 import br.com.technologies.venom.medalertapp.models.Consulta;
 import br.com.technologies.venom.medalertapp.models.ConsultasResp;
+import br.com.technologies.venom.medalertapp.models.Horario;
 import br.com.technologies.venom.medalertapp.models.Medicamento;
 import br.com.technologies.venom.medalertapp.models.MedicamentoDetalheResp;
 import br.com.technologies.venom.medalertapp.models.Paciente;
@@ -42,6 +44,7 @@ public class AppRepository {
     private PacienteDAO pacienteDAO;
     private MedicamentoDAO medicamentoDAO;
     private ReceitaDAO receitaDAO;
+    private final HorarioDAO horarioDAO;
     private MutableLiveData<UsuarioResp> usuarioAutenticado = new MutableLiveData<>();
     private MutableLiveData<MedicamentoDetalheResp> detalhesMedicamento = new MutableLiveData<>();
 
@@ -61,6 +64,7 @@ public class AppRepository {
         pacienteDAO = appDatabase.getPacienteDAO();
         medicamentoDAO = appDatabase.getMedicamentoDAO();
         receitaDAO = appDatabase.getReceitaDAO();
+        horarioDAO = appDatabase.getHorarioDAO();
     }
 
     /**
@@ -220,6 +224,12 @@ public class AppRepository {
         });
     }
 
+    public void cadastrarHorario(Horario horario) {
+        Log.d(TAG, "cadastrarHorario: Cadastrando um horário de medicamento no banco de dados...");
+        AppDatabase.EXECUTOR_SERVICE.execute(() -> {
+            horarioDAO.inserir(horario);
+        });
+    }
 
     //CRUD - READ
     public LiveData<List<Paciente>> listarPacientes() {
@@ -292,6 +302,48 @@ public class AppRepository {
             @Override
             public LiveData<List<Receita>> call() {
                 return receitaDAO.listar();
+            }
+        });
+
+        try {
+            listaRecuperada = futureList.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return listaRecuperada;
+    }
+
+    public LiveData<List<Horario>> listarHorarios() {
+        Log.d(TAG, "listarHorarios: Listando horarios cadastradas no banco de dados...");
+        LiveData<List<Horario>> listaRecuperada = null;
+        Future<LiveData<List<Horario>>> futureList = AppDatabase.EXECUTOR_SERVICE.submit(new Callable() {
+            @Override
+            public LiveData<List<Horario>> call() {
+                return horarioDAO.listar();
+            }
+        });
+
+        try {
+            listaRecuperada = futureList.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return listaRecuperada;
+    }
+
+    public LiveData<List<Horario>> listarHorariosPorMedicamentoId(String medicamentoId) {
+        Log.d(TAG, "listarHorariosPorMedicamentoId: Listando horarios cadastradas no banco de dados...");
+        LiveData<List<Horario>> listaRecuperada = null;
+        Future<LiveData<List<Horario>>> futureList = AppDatabase.EXECUTOR_SERVICE.submit(new Callable() {
+            @Override
+            public LiveData<List<Horario>> call() {
+                return horarioDAO.listarPorMedicamentoId(medicamentoId);
             }
         });
 
