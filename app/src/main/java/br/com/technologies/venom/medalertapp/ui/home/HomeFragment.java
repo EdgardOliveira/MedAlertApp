@@ -78,6 +78,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 trocarTela(getParentFragment(), R.id.action_nav_home_to_nav_cartao);
                 break;
             case R.id.cvSair:
+                homeViewModel.limparDados();
                 trocarTela(getParentFragment(), R.id.action_nav_home_to_nav_login);
         }
     }

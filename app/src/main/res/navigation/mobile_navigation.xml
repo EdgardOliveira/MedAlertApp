@@ -29,6 +29,8 @@
             app:destination="@id/nav_cartao" />
         <action
             android:id="@+id/action_nav_home_to_nav_login"
+            app:popUpTo="@id/nav_login"
+            app:popUpToInclusive="true"
             app:destination="@id/nav_login" />
     </fragment>
     <fragment

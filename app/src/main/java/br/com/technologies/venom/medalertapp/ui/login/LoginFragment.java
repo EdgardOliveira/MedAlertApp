@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -20,6 +21,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.royrodriguez.transitionbutton.TransitionButton;
 
+import br.com.technologies.venom.medalertapp.MainActivity;
 import br.com.technologies.venom.medalertapp.R;
 import br.com.technologies.venom.medalertapp.databinding.FragmentLoginBinding;
 import br.com.technologies.venom.medalertapp.models.Medicamento;
@@ -48,6 +50,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         binding = FragmentLoginBinding.inflate(inflater, container, false);
         view = binding.getRoot();
+
+        ActionBar actionBar = ((MainActivity) getActivity()).getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(false);
 
         layEmail = binding.layLoginEmail;
         laySenha = binding.layLoginSenha;

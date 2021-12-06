@@ -310,12 +310,13 @@ public class AppRepository {
 
 
     //CRUD - DELETE
-    private void excluirPaciente() {
+    public void excluirPaciente() {
         Log.d(TAG, "excluirPaciente: Excluindo os pacientes cadastrados no banco de dados...");
         AppDatabase.EXECUTOR_SERVICE.execute(() -> {
             pacienteDAO.excluirTodos();
         });
     }
+
     private void excluirMedicamento() {
         Log.d(TAG, "excluirMedicamento: Excluindo os medicamentos cadastrados no banco de dados...");
         AppDatabase.EXECUTOR_SERVICE.execute(() -> {
