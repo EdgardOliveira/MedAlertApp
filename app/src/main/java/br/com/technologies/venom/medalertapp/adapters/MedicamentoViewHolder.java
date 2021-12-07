@@ -45,9 +45,9 @@ public class MedicamentoViewHolder extends RecyclerView.ViewHolder {
         tvDosagem = itemView.findViewById(R.id.tvCVMedicamentoDosagem);
         tvDosagemTitulo = itemView.findViewById(R.id.tvCVMedicamentoDosagemTitulo);
         ivMedicamento = itemView.findViewById(R.id.ivCVMedicamento);
-        tvHora01 = itemView.findViewById(R.id.tvCVRemedioHorario01);
-        tvHora02 = itemView.findViewById(R.id.tvCVRemedioHorario02);
-        tvHora03 = itemView.findViewById(R.id.tvCVRemedioHorario03);
+//        tvHora01 = itemView.findViewById(R.id.tvCVRemedioHorario01);
+//        tvHora02 = itemView.findViewById(R.id.tvCVRemedioHorario02);
+//        tvHora03 = itemView.findViewById(R.id.tvCVRemedioHorario03);
     }
 
     //métodos

@@ -12,7 +12,8 @@ import java.util.Date;
         tableName = "horarios",
         indices = {
                 @Index("medicamentoId"),
-                @Index("dataHora"),
+                @Index("data"),
+                @Index("hora"),
                 @Index("status")
         }
 )
@@ -20,8 +21,9 @@ public class Horario {
     @PrimaryKey(autoGenerate = true)
     private long id;
     private String medicamentoId;
-    private Date dataHora;
-    private int status;
+    private String data;
+    private String hora;
+    private String status;
 
     public long getId() {
         return id;
@@ -39,31 +41,38 @@ public class Horario {
         this.medicamentoId = medicamentoId;
     }
 
-    public Date getDataHora() {
-        return dataHora;
+    public String getData() {
+        return data;
     }
 
-    public void setDataHora(Date dataHora) {
-        this.dataHora = dataHora;
+    public void setData(String data) {
+        this.data = data;
     }
 
+    public String getHora() {
+        return hora;
+    }
 
-    public int getStatus() {
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
     @Ignore
     public Horario() {
-
     }
 
-    public Horario(String medicamentoId, Date dataHora, int status) {
+    public Horario(String medicamentoId, String data, String hora, String status) {
         this.medicamentoId = medicamentoId;
-        this.dataHora = dataHora;
+        this.data = data;
+        this.hora = hora;
         this.status = status;
     }
 }

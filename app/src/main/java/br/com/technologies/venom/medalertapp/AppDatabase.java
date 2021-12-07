@@ -15,9 +15,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import br.com.technologies.venom.medalertapp.dao.HorarioDAO;
+import br.com.technologies.venom.medalertapp.dao.HorarioMedicamentoDAO;
 import br.com.technologies.venom.medalertapp.dao.MedicamentoDAO;
 import br.com.technologies.venom.medalertapp.dao.PacienteDAO;
 import br.com.technologies.venom.medalertapp.dao.ReceitaDAO;
+import br.com.technologies.venom.medalertapp.models.Dia;
 import br.com.technologies.venom.medalertapp.models.Horario;
 import br.com.technologies.venom.medalertapp.models.Medicamento;
 import br.com.technologies.venom.medalertapp.models.Paciente;
@@ -29,7 +31,8 @@ import br.com.technologies.venom.medalertapp.utils.Conversor;
                 Paciente.class,
                 Receita.class,
                 Medicamento.class,
-                Horario.class
+                Horario.class,
+                Dia.class
         },
         version = 1,
         exportSchema = false
@@ -47,7 +50,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract ReceitaDAO getReceitaDAO();
     public abstract MedicamentoDAO getMedicamentoDAO();
     public abstract HorarioDAO getHorarioDAO();
-
+    public abstract HorarioMedicamentoDAO getHorarioMedicamentoDAO();
 
     public static AppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {

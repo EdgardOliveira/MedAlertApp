@@ -1,8 +1,6 @@
 package br.com.technologies.venom.medalertapp.adapters;
 
 
-import static br.com.technologies.venom.medalertapp.utils.Constantes.TAG;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +25,7 @@ public class HorarioAdapter extends RecyclerView.Adapter<HorarioViewHolder> {
     }
 
     public void submitList(List<Dia> list) {
+        Log.d("teste", "submitList: " + list.size());
         mDiffer.submitList(list);
     }
 
@@ -49,12 +48,12 @@ public class HorarioAdapter extends RecyclerView.Adapter<HorarioViewHolder> {
         @Override
         public boolean areItemsTheSame(
                 @NonNull Dia oldData, @NonNull Dia newData) {
-            return oldData.getData().equals(newData.getData());
+            return oldData.getId() == (newData.getId());
         }
 
         @Override
         public boolean areContentsTheSame(@NonNull Dia oldData, @NonNull Dia newData) {
-            return oldData.getData().equals(newData.getData());
+            return oldData.getId() == newData.getId();
         }
     };
 }

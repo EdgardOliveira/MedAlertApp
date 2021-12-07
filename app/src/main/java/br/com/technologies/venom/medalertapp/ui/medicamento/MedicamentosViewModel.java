@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import br.com.technologies.venom.medalertapp.AppRepository;
+import br.com.technologies.venom.medalertapp.models.Dia;
 import br.com.technologies.venom.medalertapp.models.Horario;
 import br.com.technologies.venom.medalertapp.models.Medicamento;
 import br.com.technologies.venom.medalertapp.models.MedicamentoDetalheResp;
@@ -34,7 +35,15 @@ public class MedicamentosViewModel extends AndroidViewModel {
         appRepository.cadastrarHorario(horario);
     }
 
+    public void cadastrarHorarioMedicamento(Dia dia) {
+        appRepository.cadastrarHorarioMedicamento(dia);
+    }
+
     public LiveData<List<Horario>> listarPorMedicamentoId(String medicamentoId){
         return appRepository.listarHorariosPorMedicamentoId(medicamentoId);
+    }
+
+    public LiveData<List<Dia>> listarHorariosPorMedicamentoId(String medicamentoId){
+        return appRepository.listarHorariosMedicamentosPorMedicamentoId(medicamentoId);
     }
 }

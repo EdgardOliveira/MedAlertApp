@@ -12,26 +12,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_percent="0.05" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gdlMedicamentoDetalheDir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.90" />
+        app:layout_constraintGuide_percent="0.95" />
 
     <ImageButton
         android:id="@+id/ibFoto"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="32dp"
         android:scaleType="fitXY"
         android:src="@drawable/ic_barcode"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvOrientacoes" />
+        app:layout_constraintStart_toStartOf="@+id/gdlMedicamentoDetalheEsq"
+        app:layout_constraintTop_toTopOf="@+id/tvPrecoMinTitulo" />
 
     <TextView
         android:id="@+id/tvNome"
@@ -58,13 +56,13 @@
         android:id="@+id/tvPrecos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="Preços"
         android:textColor="@color/MediumGrey"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/tvNome"
-        app:layout_constraintStart_toStartOf="@+id/tvNome"
-        app:layout_constraintTop_toBottomOf="@+id/tvNome" />
+        app:layout_constraintEnd_toStartOf="@+id/gdlMedicamentoDetalheDir"
+        app:layout_constraintStart_toEndOf="@+id/ibFoto"
+        app:layout_constraintTop_toBottomOf="@+id/tvOrientacoes" />
 
     <TextView
         android:id="@+id/tvPrecoMinTitulo"
@@ -135,6 +133,7 @@
         android:layout_height="wrap_content"
         android:text="Farmacêutica"
         android:textColor="@color/MediumGrey"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/ibFoto"
         app:layout_constraintEnd_toEndOf="@+id/ibFoto"
         app:layout_constraintStart_toStartOf="@+id/ibFoto" />
@@ -156,9 +155,10 @@
         android:id="@+id/btnIniciarTratamento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
         android:text="Iniciar Tratamento"
-        app:layout_constraintEnd_toStartOf="@+id/gdlMedicamentoDetalheDir"
-        app:layout_constraintStart_toStartOf="@+id/gdlMedicamentoDetalheEsq"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPrecoMed" />
 
     <TextView
@@ -255,14 +255,11 @@
         android:id="@+id/rvHorarios"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnIniciarTratamento"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline9"
+        app:layout_constraintEnd_toStartOf="@+id/gdlMedicamentoDetalheDir"
+        app:layout_constraintStart_toStartOf="@+id/gdlMedicamentoDetalheEsq"
+        app:layout_constraintTop_toBottomOf="@+id/tvNome"
         tools:listitem="@layout/cardview_horario_item" />
 
     <Button
@@ -270,7 +267,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="listar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvFarmaceutica" />
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvOrientacoes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTratamento" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.98" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

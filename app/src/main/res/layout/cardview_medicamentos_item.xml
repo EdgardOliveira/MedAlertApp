@@ -32,8 +32,8 @@
 
             <ImageView
                 android:id="@+id/ivCVMedicamento"
-                android:layout_width="140dp"
-                android:layout_height="140dp"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
                 android:background="@color/colorShimmer"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:background="@color/colorShimmer"
-                android:text="Remédio"
+                android:text="Medicamento"
                 android:textSize="8sp"
                 app:layout_constraintStart_toEndOf="@+id/ivCVMedicamento"
                 app:layout_constraintTop_toTopOf="@+id/ivCVMedicamento" />
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:background="@color/colorShimmer"
-                android:text="Fórmula"
+                android:text="Princípio ativo"
                 android:textSize="8sp"
                 app:layout_constraintStart_toStartOf="@+id/tvCVMedicamentoRemedio"
                 app:layout_constraintTop_toBottomOf="@+id/tvCVMedicamentoRemedio" />
@@ -109,40 +109,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tvCVMedicamentoDosagemTitulo"
                 app:layout_constraintTop_toBottomOf="@+id/tvCVMedicamentoDosagemTitulo" />
-
-            <TextView
-                android:id="@+id/tvCVRemedioHorario01"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/accent"
-                android:padding="4dp"
-                android:text="08:00"
-                app:layout_constraintStart_toStartOf="@+id/tvCVMedicamentoDosagem"
-                app:layout_constraintTop_toBottomOf="@+id/tvCVMedicamentoDosagem" />
-
-            <TextView
-                android:id="@+id/tvCVRemedioHorario02"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:background="@color/cardview_title"
-                android:padding="4dp"
-                android:text="16:00"
-                app:layout_constraintStart_toEndOf="@+id/tvCVRemedioHorario01"
-                app:layout_constraintTop_toTopOf="@+id/tvCVRemedioHorario01" />
-
-            <TextView
-                android:id="@+id/tvCVRemedioHorario03"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:background="@color/MediumGrey"
-                android:padding="4dp"
-                android:text="00:00"
-                app:layout_constraintStart_toEndOf="@+id/tvCVRemedioHorario02"
-                app:layout_constraintTop_toTopOf="@+id/tvCVRemedioHorario02" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.facebook.shimmer.ShimmerFrameLayout>

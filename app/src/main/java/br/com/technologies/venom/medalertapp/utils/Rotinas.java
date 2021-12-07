@@ -63,18 +63,6 @@ public class Rotinas {
         }
     }
 
-    /**
-     * Abrir uma página na web
-     *
-     * @param context
-     * @param endereco
-     */
-    public static void abrirPagina(Context context, String endereco) {
-        Uri uri = Uri.parse(endereco);
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        context.startActivity(intent);
-    }
-
     public static void criarCanalNotificacao(Context context){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "medalertReminderChannel";

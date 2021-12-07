@@ -1,6 +1,8 @@
 package br.com.technologies.venom.medalertapp.ui.medicamento;
 
-import static br.com.technologies.venom.medalertapp.utils.Rotinas.abrirPagina;
+import static br.com.technologies.venom.medalertapp.utils.Constantes.TAG;
+import static br.com.technologies.venom.medalertapp.utils.Rotinas.configurarHoraMedicamento;
+import static br.com.technologies.venom.medalertapp.utils.Rotinas.formatarDataHumano;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,28 +28,18 @@ import com.bumptech.glide.Glide;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
 import br.com.technologies.venom.medalertapp.R;
 import br.com.technologies.venom.medalertapp.adapters.HorarioAdapter;
-import br.com.technologies.venom.medalertapp.adapters.MedicamentoAdapter;
 import br.com.technologies.venom.medalertapp.databinding.FragmentMedicamentoDetalheBinding;
 import br.com.technologies.venom.medalertapp.models.Dia;
-import br.com.technologies.venom.medalertapp.models.DiaHora;
 import br.com.technologies.venom.medalertapp.models.Horario;
 import br.com.technologies.venom.medalertapp.models.Medicamento;
 import br.com.technologies.venom.medalertapp.models.MedicamentoDetalhe;
 import br.com.technologies.venom.medalertapp.models.MedicamentoDetalheResp;
-import br.com.technologies.venom.medalertapp.models.Receita;
-
-import static br.com.technologies.venom.medalertapp.utils.Constantes.TAG;
-import static br.com.technologies.venom.medalertapp.utils.Rotinas.formatarDataHumano;
-import static br.com.technologies.venom.medalertapp.utils.Rotinas.formatarHoraHumano;
-
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class MedicamentoDetalheFragment extends Fragment implements View.OnClickListener {
 
@@ -60,7 +52,7 @@ public class MedicamentoDetalheFragment extends Fragment implements View.OnClick
     private ProgressBar pbStatus;
     private Medicamento medicamento;
     private TextView tvUso, tvTratamento, tvFormula, tvDosagem, tvConcentracao, tvQuantidade, tvDias, tvfrequenciaH, tvOrientacoes;
-    private List<Horario> horariosList = new ArrayList<>();
+    private List<Dia> diasList = new ArrayList<>();
     private HorarioAdapter adapter;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
@@ -115,6 +107,12 @@ public class MedicamentoDetalheFragment extends Fragment implements View.OnClick
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        consultarHorariosMedicamentos();
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
@@ -129,9 +127,8 @@ public class MedicamentoDetalheFragment extends Fragment implements View.OnClick
             case R.id.btnIniciarTratamento:
                 iniciarTratamento(Calendar.getInstance());
                 break;
-
             case R.id.btnListar:
-                consultarHorarios();
+                consultarHorariosMedicamentos();
                 break;
         }
     }
@@ -140,165 +137,110 @@ public class MedicamentoDetalheFragment extends Fragment implements View.OnClick
         int frequenciaAoDia = (Integer) 24 / medicamento.getFrequenciaH();
         int dias = medicamento.getDias();
         Calendar dataCalculada = dataInicial;
-        List<Calendar> horariosList = new ArrayList<>();
-        Horario horario;
-        Log.d(TAG, "iniciarTratamento: O remédio será tomado de " + medicamento.getFrequenciaH() + "h/" + medicamento.getFrequenciaH() + "h durante " + dias  + "dia(s)");
-
+        Log.d(TAG, "iniciarTratamento: O remédio será tomado de " + medicamento.getFrequenciaH() + "h/" + medicamento.getFrequenciaH() + "h durante " + dias + "dia(s)");
         for (int i = 0; i < dias; i++) {
+            String[] horas = {"", "", "", "", "", ""};
             //Incrementa os dias
             dataCalculada.set(Calendar.MINUTE, 0);
             dataCalculada.set(Calendar.SECOND, 0);
-            dataCalculada.set(Calendar.DATE, Calendar.DATE + i);
             switch (frequenciaAoDia - 1) {
                 case 0: //Tomar 1x ao dia
                     Log.d(TAG, "iniciarTratamento: Tomar 1x ao dia...");
                     //Antes de dormir as 22h?
-                    dataCalculada.set(Calendar.HOUR, 22);
-                    horariosList.add(dataCalculada);
+                    horas[0] = "22:00";
                     break;
                 case 1: //Tomar 2x ao dia (12h/12h)
                     //11h e 23h
                     Log.d(TAG, "iniciarTratamento: Tomar 2x ao dia...");
-                    dataCalculada.set(Calendar.HOUR, 11);
-                    horariosList.add(dataCalculada);
-                    dataCalculada.set(Calendar.HOUR, 23);
-                    horariosList.add(dataCalculada);
+                    horas[0] = "11:00";
+                    horas[1] = "22:00";
                     break;
                 case 2: //Tomar 3x ao dia (8h/8h)
                     //7h, 15h e 23h
-                    Log.d(TAG, "iniciarTratamento: Tomar 3x ao dia...");
-                    dataCalculada.set(Calendar.HOUR, 7);
-                    horario = new Horario(
-                            medicamento.getId(),
-                            dataCalculada.getTime(),
-                            0
-                    );
-                    medicamentosViewModel.cadastrarHorario(horario);
-                    horariosList.add(dataCalculada);
-                    dataCalculada.set(Calendar.HOUR, 15);
-                    horario = new Horario(
-                            medicamento.getId(),
-                            dataCalculada.getTime(),
-                            0
-                    );
-                    medicamentosViewModel.cadastrarHorario(horario);
-                    horariosList.add(dataCalculada);
-                    dataCalculada.set(Calendar.HOUR, 23);
-                    horario = new Horario(
-                            medicamento.getId(),
-                            dataCalculada.getTime(),
-                            0
-                    );
-                    medicamentosViewModel.cadastrarHorario(horario);
-                    horariosList.add(dataCalculada);
+                    horas[0] = "07:00";
+                    horas[1] = "15:00";
+                    horas[2] = "23:00";
                     break;
                 case 3: //Tomar 4x ao dia (6h/6h)
                     //6h, 12h, 18h e 24h
                     Log.d(TAG, "iniciarTratamento: Tomar 4x ao dia...");
-                    dataCalculada.set(Calendar.HOUR, 0);
-                    horariosList.add(dataCalculada);
-                    dataCalculada.set(Calendar.HOUR, 6);
-                    horariosList.add(dataCalculada);
-                    dataCalculada.set(Calendar.HOUR, 12);
-                    horariosList.add(dataCalculada);
-                    dataCalculada.set(Calendar.HOUR, 18);
-                    horariosList.add(dataCalculada);
+                    horas[0] = "06:00";
+                    horas[1] = "12:00";
+                    horas[2] = "18:00";
+                    horas[3] = "23:59";
                     break;
                 case 5: //Tomar 6x ao dia (4h/4h)
                     //2h, 6h, 10h, 14h, 18h e 22h
                     Log.d(TAG, "iniciarTratamento: Tomar 6x ao dia...");
-                    dataCalculada.set(Calendar.HOUR, 2);
-                    horariosList.add(dataCalculada);
-                    dataCalculada.set(Calendar.HOUR, 6);
-                    horariosList.add(dataCalculada);
-                    dataCalculada.set(Calendar.HOUR, 10);
-                    horariosList.add(dataCalculada);
-                    dataCalculada.set(Calendar.HOUR, 14);
-                    horariosList.add(dataCalculada);
-                    dataCalculada.set(Calendar.HOUR, 18);
-                    horariosList.add(dataCalculada);
-                    dataCalculada.set(Calendar.HOUR, 22);
-                    horariosList.add(dataCalculada);
+                    horas[0] = "02:00";
+                    horas[1] = "06:00";
+                    horas[2] = "10:00";
+                    horas[3] = "14:00";
+                    horas[4] = "18:00";
+                    horas[5] = "22:00";
                     break;
             }
-        }
-
-        cadastrarHorarios(horariosList);
-    }
-
-    private void cadastrarHorarios(List<Calendar> horariosList) {
-        for (Calendar dtCalc : horariosList) {
-            Horario horario = new Horario(
-                    medicamento.getId(),
-                    dtCalc.getTime(),
-                    0
-            );
-//            medicamentosViewModel.cadastrarHorario(horario);
+            cadastrarHorariosDia(medicamento.getId(), formatarDataHumano.format(dataCalculada.getTime()), horas);
+            //Incrementa o dia
+            dataCalculada.add(Calendar.DATE, 1);
         }
     }
 
-    private void consultarHorarios() {
+    private void cadastrarHorariosDia(String medicamentoId, String data, String[] horas){
+        Dia dia = new Dia(
+                medicamentoId,
+                data,
+                horas[0],
+                horas[0].equals("") ? "I" : "P",
+                horas[1],
+                horas[1].equals("") ? "I" : "P",
+                horas[2],
+                horas[2].equals("") ? "I" : "P",
+                horas[3],
+                horas[3].equals("") ? "I" : "P",
+                horas[4],
+                horas[4].equals("") ? "I" : "P",
+                horas[5],
+                horas[5].equals("") ? "I" : "P"
+        );
+        medicamentosViewModel.cadastrarHorarioMedicamento(dia);
 
-        medicamentosViewModel.listarPorMedicamentoId(medicamento.getId()).observe(getViewLifecycleOwner(), new Observer<List<Horario>>() {
+        for (String hora: horas) {
+            if (!hora.equals("")){
+                cadastrarHorarios(medicamentoId, data, hora);
+            }
+        }
+    }
+
+    private void cadastrarHorarios(String medicamentoId, String data, String hora){
+        Horario horario = new Horario(medicamentoId, data, hora, "P");
+        medicamentosViewModel.cadastrarHorario(horario);
+    }
+
+    private void consultarHorariosMedicamentos() {
+
+        medicamentosViewModel.listarHorariosPorMedicamentoId(medicamento.getId()).observe(getViewLifecycleOwner(), new Observer<List<Dia>>() {
 
             @Override
-            public void onChanged(List<Horario> horariosList) {
-                if (horariosList.size() > 0) {
-                    setHorariosList(horariosList);
-                    getHorariosList();
+            public void onChanged(List<Dia> diasList) {
+                if (diasList.size() > 0) {
+                    btnIniciarTratamento.setVisibility(View.GONE);
+                    setDiasList(diasList);
+                    configurarRecyclerView();
+                    getDiasList();
                 }
             }
         });
     }
 
-    public void setHorariosList(List<Horario> horariosList) {
-        this.horariosList = horariosList;
+    public void setDiasList(List<Dia> diasList) {
+        this.diasList = diasList;
     }
 
-    public void getHorariosList() {
-        List<DiaHora> diaHoraList = new ArrayList<>();
-        for (Horario horario : this.horariosList) {
-            DiaHora diaHora = new DiaHora(
-                    formatarDataHumano.format(horario.getDataHora()),
-                    formatarHoraHumano.format(horario.getDataHora())
-            );
-            diaHoraList.add(diaHora);
-            Log.d(TAG, "onChanged: Data: " + diaHora.getDia() +
-                    " Hora: " + diaHora.getHora());
-        }
-        List<String> datasList = new ArrayList<>();
-        for (Horario horario : this.horariosList) {
-            String data = formatarDataHumano.format(horario.getDataHora());
-            String hora = formatarHoraHumano.format(horario.getDataHora());
-            if (!datasList.contains(data)) {
-                Log.d(TAG, "getHorariosList: Adicionado data... " + data);
-                Log.d(TAG, "getHorariosList: Adicionando hora..." + hora);
-                datasList.add(data);
-            }
-        }
-
-        for (String data : datasList) {
-            List<String> dias = datasList.stream().filter(data::equalsIgnoreCase).collect(Collectors.toList());
-            for (String dia : dias) {
-                Log.d(TAG, "getHorariosList: Horas: " + dia);
-                //filtrar as horas que aparecem em uma data
-                if (diaHoraList.contains(dias))
-                    Log.d(TAG, "getHorariosList: Encontrei...");
-            }
-////            Dia dia = new Dia(
-////                    data,
-////                    horarios.get(0),
-////                    horarios.get(1),
-////                    horarios.get(2),
-////                    horarios.get(3),
-////                    horarios.get(4),
-////                    horarios.get(5)
-////            );
-////            diaList.add(dia);
-        }
-//
-//        adapter.submitList(diaList);
-//        adapter.notifyDataSetChanged();
+    public void getDiasList() {
+        //Pegar o dia, hora1, hora2, hora3, hora4, hora5, hora6
+        adapter.submitList(diasList);
+        adapter.notifyDataSetChanged();
     }
 
     private void consultar(String codigo) {
@@ -309,7 +251,7 @@ public class MedicamentoDetalheFragment extends Fragment implements View.OnClick
                     Log.d(TAG, "onChanged: Preescrição médica associada à um medicamento com sucesso!");
                     setMedicamento(medicamentoDetalheResp.getMedicamentoDetalhe());
                 } else {
-                    Log.d(TAG, "onChanged: Não conseguimos dadso deste medicamento...");
+                    Log.d(TAG, "onChanged: Não conseguimos dados deste medicamento...");
                     Toast.makeText(getActivity(), "Não conseguimos dados deste medicamento", Toast.LENGTH_SHORT).show();
                     pbStatus.setVisibility(View.INVISIBLE);
                 }
