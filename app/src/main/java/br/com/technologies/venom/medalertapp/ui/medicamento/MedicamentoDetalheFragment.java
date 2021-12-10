@@ -85,7 +85,6 @@ public class MedicamentoDetalheFragment extends Fragment implements View.OnClick
         tvOrientacoes = binding.tvOrientacoes;
         pbStatus = binding.progressBar;
         btnIniciarTratamento = binding.btnIniciarTratamento;
-        btnListar = binding.btnListar;
         recyclerView = binding.rvHorarios;
 
 
@@ -93,7 +92,6 @@ public class MedicamentoDetalheFragment extends Fragment implements View.OnClick
 
         ibFoto.setOnClickListener(this);
         btnIniciarTratamento.setOnClickListener(this);
-        btnListar.setOnClickListener(this);
         return view;
     }
 
@@ -126,9 +124,6 @@ public class MedicamentoDetalheFragment extends Fragment implements View.OnClick
                 break;
             case R.id.btnIniciarTratamento:
                 iniciarTratamento(Calendar.getInstance());
-                break;
-            case R.id.btnListar:
-                consultarHorariosMedicamentos();
                 break;
         }
     }
@@ -215,6 +210,8 @@ public class MedicamentoDetalheFragment extends Fragment implements View.OnClick
     private void cadastrarHorarios(String medicamentoId, String data, String hora){
         Horario horario = new Horario(medicamentoId, data, hora, "P");
         medicamentosViewModel.cadastrarHorario(horario);
+
+        configurarHoraMedicamento(data, hora, getContext());
     }
 
     private void consultarHorariosMedicamentos() {
@@ -238,7 +235,6 @@ public class MedicamentoDetalheFragment extends Fragment implements View.OnClick
     }
 
     public void getDiasList() {
-        //Pegar o dia, hora1, hora2, hora3, hora4, hora5, hora6
         adapter.submitList(diasList);
         adapter.notifyDataSetChanged();
     }
@@ -290,9 +286,9 @@ public class MedicamentoDetalheFragment extends Fragment implements View.OnClick
                         .into(ibFoto);
                 tvFarmaceutica.setText(medicamentoDetalhe.getLaboratorio());
                 tvNome.setText(medicamentoDetalhe.getNome());
-                tvPrecoMin.setText(String.valueOf(medicamentoDetalhe.getPrecoMin()));
-                tvPrecoMed.setText(String.valueOf(medicamentoDetalhe.getPrecoMed()));
-                tvPrecoMax.setText(String.valueOf(medicamentoDetalhe.getPrecoMax()));
+                tvPrecoMin.setText(medicamentoDetalhe.getPrecoMin() == null ? "" : String.valueOf(medicamentoDetalhe.getPrecoMin()));
+                tvPrecoMed.setText(medicamentoDetalhe.getPrecoMed() == null ? "" : String.valueOf(medicamentoDetalhe.getPrecoMed()));
+                tvPrecoMax.setText(medicamentoDetalhe.getPrecoMax() == null ? "" : String.valueOf(medicamentoDetalhe.getPrecoMax()));
                 pbStatus.setVisibility(View.INVISIBLE);
             }
         } catch (Exception e) {

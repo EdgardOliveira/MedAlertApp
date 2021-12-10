@@ -23,6 +23,8 @@ import br.com.technologies.venom.medalertapp.dao.ReceitaDAO;
 import br.com.technologies.venom.medalertapp.models.Consulta;
 import br.com.technologies.venom.medalertapp.models.ConsultasResp;
 import br.com.technologies.venom.medalertapp.models.Dia;
+import br.com.technologies.venom.medalertapp.models.Gerenciamento;
+import br.com.technologies.venom.medalertapp.models.GerenciamentoResp;
 import br.com.technologies.venom.medalertapp.models.Horario;
 import br.com.technologies.venom.medalertapp.models.Medicamento;
 import br.com.technologies.venom.medalertapp.models.MedicamentoDetalheResp;
@@ -50,6 +52,7 @@ public class AppRepository {
     private final HorarioDAO horarioDAO;
     private MutableLiveData<UsuarioResp> usuarioAutenticado = new MutableLiveData<>();
     private MutableLiveData<MedicamentoDetalheResp> detalhesMedicamento = new MutableLiveData<>();
+    private MutableLiveData<GerenciamentoResp> detalhesGerenciamento = new MutableLiveData<>();
 
     //construtor
     public AppRepository(Application application) {
@@ -203,6 +206,51 @@ public class AppRepository {
         });
 
         return detalhesMedicamento;
+    }
+
+    /**
+     * Objetivo: Função responsável por enviar dados do gerenciamento de um medicamento para a API
+     * @param gerenciamento
+     * @return
+     */
+    public LiveData<GerenciamentoResp> cadastrarGerenciamentoAPI(Gerenciamento gerenciamento) {
+        Call<GerenciamentoResp> call = restService.cadastrarGerenciamento(token, gerenciamento);
+
+        call.enqueue(new Callback<GerenciamentoResp>() {
+            GerenciamentoResp gerenciamentoResp = new GerenciamentoResp();
+
+            @Override
+            public void onResponse(Call<GerenciamentoResp> call, Response<GerenciamentoResp> response) {
+
+                if (response.isSuccessful()) {
+                    Log.d(TAG, "onResponse: Resposta recebida com sucesso!");
+                    try {
+                        gerenciamentoResp = response.body();
+                        detalhesGerenciamento.postValue(gerenciamentoResp);
+                    } catch (Exception e) {
+                        Log.e(TAG, "onResponse: Ocorreu um erro ao tentar salvar os dados", e);
+                        gerenciamentoResp.setSucesso(false);
+                        gerenciamentoResp.setMensagem("Ocorreu um erro ao tentar salvar os dados");
+                        detalhesGerenciamento.postValue(gerenciamentoResp);
+                    }
+                } else {
+                    Log.d(TAG, "onResponse: Ocorreu um erro ao tentar ler a resposta.\nErro:" + response.errorBody());
+                    gerenciamentoResp.setSucesso(false);
+                    gerenciamentoResp.setMensagem("Ocorreu um erro ao tentar ler a resposta");
+                    detalhesGerenciamento.postValue(gerenciamentoResp);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GerenciamentoResp> call, Throwable t) {
+                Log.e(TAG, "onFailure: Ocorreu um erro ao requisitar os dados da consulta", t);
+                gerenciamentoResp.setSucesso(false);
+                gerenciamentoResp.setMensagem("Ocorreu uma falha");
+                detalhesGerenciamento.postValue(gerenciamentoResp);
+            }
+        });
+
+        return detalhesGerenciamento;
     }
 
 

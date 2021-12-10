@@ -32,6 +32,9 @@
             app:popUpTo="@id/nav_login"
             app:popUpToInclusive="true"
             app:destination="@id/nav_login" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_dispensador"
+            app:destination="@id/nav_dispensador" />
     </fragment>
     <fragment
         android:id="@+id/nav_receitas"
@@ -96,6 +99,15 @@
         <argument
             android:name="usuario"
             app:argType="br.com.technologies.venom.medalertapp.models.Usuario" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_dispensador"
+        android:name="br.com.technologies.venom.medalertapp.ui.dispensador.DispensadorFragment"
+        android:label="Dispensador"
+        tools:layout="@layout/fragment_dispensador">
+        <action
+            android:id="@+id/action_nav_dispensador_to_nav_home"
+            app:destination="@id/nav_home" />
     </fragment>
 
 </navigation>

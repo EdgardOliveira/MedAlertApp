@@ -66,15 +66,6 @@ public class MedicamentoViewHolder extends RecyclerView.ViewHolder {
             tvDosagem.setBackground(null);
             tvDosagem.setText(medicamento.getDosagem());
 
-            tvHora01.setBackground(null);
-            tvHora01.setText("08:00");
-
-            tvHora02.setBackground(null);
-            tvHora02.setText("16:00");
-
-            tvHora03.setBackground(null);
-            tvHora03.setText("00:00");
-
             ivMedicamento.setBackground(null);
             ivMedicamento.setImageResource(R.drawable.ic_medicamentos);
         }catch (Exception e){

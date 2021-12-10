@@ -97,8 +97,8 @@
 
     <com.royrodriguez.transitionbutton.TransitionButton
         android:id="@+id/btnVerificar"
-        android:layout_width="193dp"
-        android:layout_height="51dp"
+        android:layout_width="100dp"
+        android:layout_height="55dp"
         android:text="Verificar"
         android:textAllCaps="false"
         android:textColor="@color/LightGrey"
@@ -126,8 +126,8 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
         android:layout_marginTop="32dp"
         android:src="@drawable/ic_login"
         app:layout_constraintEnd_toStartOf="@+id/gdlLoginDireita"

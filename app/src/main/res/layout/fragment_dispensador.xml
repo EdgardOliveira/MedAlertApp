@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/DarkerGrey"
+    tools:context=".ui.home.HomeFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvRecipiente01"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:backgroundTint="@color/DarkerGrey"
+        app:cardCornerRadius="12dp"
+        app:layout_columnWeight="1"
+        app:layout_constraintEnd_toStartOf="@+id/cvRecipiente02"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline10"
+        app:layout_rowWeight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_medicamentos"
+                tools:ignore="VectorDrawableCompat" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/regular"
+                android:text="Recipiente 01"
+                android:textColor="@color/MedGrey"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvRecipiente02"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:backgroundTint="@color/DarkerGrey"
+        app:cardCornerRadius="12dp"
+        app:layout_columnWeight="1"
+        app:layout_constraintEnd_toStartOf="@+id/cvRecipiente03"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cvRecipiente01"
+        app:layout_constraintTop_toTopOf="@+id/guideline10"
+        app:layout_rowWeight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_medicamentos"
+                tools:ignore="VectorDrawableCompat" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/regular"
+                android:text="Recipiente 02"
+                android:textColor="@color/MedGrey"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvRecipiente03"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:backgroundTint="@color/DarkerGrey"
+        app:cardCornerRadius="12dp"
+        app:layout_columnWeight="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cvRecipiente02"
+        app:layout_constraintTop_toTopOf="@+id/guideline10"
+        app:layout_rowWeight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_medicamentos"
+                tools:ignore="VectorDrawableCompat" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/regular"
+                android:text="Recipiente 03"
+                android:textColor="@color/MedGrey"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Modelo: MedAlertIoT"
+        android:textColor="@color/MedGrey"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Status: Online"
+        android:textColor="@color/MedGrey"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="80dp"
+        android:layout_height="71dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_medalert_simbolo"
+        app:layout_constraintBottom_toTopOf="@+id/guideline10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/cvRecipiente02"
+        app:layout_constraintStart_toStartOf="@+id/cvRecipiente02"
+        app:layout_constraintTop_toBottomOf="@+id/cvRecipiente02" />
+
+    <ProgressBar
+        android:id="@+id/progressBar3"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/cvRecipiente03"
+        app:layout_constraintStart_toStartOf="@+id/cvRecipiente03"
+        app:layout_constraintTop_toBottomOf="@+id/cvRecipiente03" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/cvRecipiente01"
+        app:layout_constraintStart_toStartOf="@+id/cvRecipiente01"
+        app:layout_constraintTop_toBottomOf="@+id/cvRecipiente01" />
+
+    <ImageView
+        android:id="@+id/ivOK01"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/ic_cloud_done"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/cvRecipiente01"
+        app:layout_constraintStart_toStartOf="@+id/cvRecipiente01"
+        app:layout_constraintTop_toBottomOf="@+id/cvRecipiente01" />
+
+    <ImageView
+        android:id="@+id/ivOK02"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/ic_cloud_done"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/cvRecipiente02"
+        app:layout_constraintStart_toStartOf="@+id/cvRecipiente02"
+        app:layout_constraintTop_toBottomOf="@+id/cvRecipiente02" />
+
+    <ImageView
+        android:id="@+id/ivOK03"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/ic_cloud_done"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/cvRecipiente03"
+        app:layout_constraintStart_toStartOf="@+id/cvRecipiente03"
+        app:layout_constraintTop_toBottomOf="@+id/cvRecipiente03" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

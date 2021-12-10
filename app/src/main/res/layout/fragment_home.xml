@@ -142,7 +142,7 @@
                     android:layout_marginTop="12dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/regular"
-                    android:text="Cartão"
+                    android:text="Cartão de Saúde"
                     android:textColor="@color/MedGrey"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -178,7 +178,7 @@
                     android:layout_marginTop="12dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/regular"
-                    android:text="Dispositivo"
+                    android:text="Dispensador"
                     android:textColor="@color/MedGrey"
                     android:textSize="16sp" />
             </LinearLayout>

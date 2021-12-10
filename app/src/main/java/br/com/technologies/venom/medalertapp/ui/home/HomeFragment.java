@@ -1,7 +1,5 @@
 package br.com.technologies.venom.medalertapp.ui.home;
 
-import static br.com.technologies.venom.medalertapp.utils.Rotinas.cancelarAlarme;
-import static br.com.technologies.venom.medalertapp.utils.Rotinas.configurarHoraMedicamento;
 import static br.com.technologies.venom.medalertapp.utils.Rotinas.trocarTela;
 
 import android.graphics.drawable.Drawable;
@@ -18,12 +16,8 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import java.util.Calendar;
-
 import br.com.technologies.venom.medalertapp.R;
 import br.com.technologies.venom.medalertapp.databinding.FragmentHomeBinding;
-import br.com.technologies.venom.medalertapp.models.Medicamento;
-import br.com.technologies.venom.medalertapp.models.Paciente;
 import br.com.technologies.venom.medalertapp.models.Usuario;
 
 public class HomeFragment extends Fragment implements View.OnClickListener{
@@ -118,14 +112,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 trocarTela(getParentFragment(), R.id.action_nav_home_to_nav_cartao);
                 break;
             case R.id.cvDispenser:
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE + 1));
-                configurarHoraMedicamento(calendar.get(Calendar.HOUR),calendar.get(Calendar.MINUTE), getContext());
+                trocarTela(getParentFragment(), R.id.action_nav_home_to_nav_dispensador);
+//                Calendar calendar = Calendar.getInstance();
+//                calendar.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE + 1));
+//                configurarHoraMedicamento(calendar.get(Calendar.HOUR),calendar.get(Calendar.MINUTE), getContext());
                 break;
             case R.id.cvSair:
                 homeViewModel.limparDados();
 //                trocarTela(getParentFragment(), R.id.action_nav_home_to_nav_login);
-                cancelarAlarme(getContext());
+//                cancelarAlarme(getContext());
         }
     }
 }

@@ -17,13 +17,15 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import static br.com.technologies.venom.medalertapp.utils.Constantes.TAG;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import br.com.technologies.venom.medalertapp.services.AlarmReceiver;
 
 public class Rotinas {
-    private static Calendar calendar;
     private static AlarmManager alarmManager;
     private static PendingIntent pendingIntent;
     private static int INTERVALO_ALARME = 60 * 1000;
@@ -76,14 +78,17 @@ public class Rotinas {
         }
     }
 
-    public static void configurarAlarme(Context context) {
+    public static void configurarAlarme(Context context, Calendar calendar) {
         alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
         Intent intent = new Intent(context.getApplicationContext(), AlarmReceiver.class);
 
         pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), 0, intent, 0);
 
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), INTERVALO_ALARME, pendingIntent);
+//        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), INTERVALO_ALARME, pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+
+        Log.d(TAG, "configurarAlarme: Alarme configurar para " + calendar.getTime().toString());
         Toast.makeText(context.getApplicationContext(), "Alarme configurado com sucesso", Toast.LENGTH_SHORT).show();
     }
 
@@ -100,14 +105,33 @@ public class Rotinas {
         Toast.makeText(context.getApplicationContext(), "Alarme cancelado", Toast.LENGTH_SHORT).show();
     }
 
-    public static void configurarHoraMedicamento(int hora, int minuto, Context context){
-        calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, hora);
-        calendar.set(Calendar.MINUTE, minuto);
+    public static void configurarHoraMedicamento(String data, String hora, Context context) {
+        DateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataConvertida = new Date();
+        int dia = 0, mes = 0, ano = 0;
+
+        try{
+            dataConvertida = dataFormatada.parse(data);
+            dia = dataConvertida.getDate();
+            mes = dataConvertida.getMonth();
+            ano = dataConvertida.getYear();
+
+        }catch (Exception e){
+            Log.e(TAG, "configurarHoraMedicamento: Ocorreu um erro ao tentar converter a data informada", e);
+        }
+
+        String[] horaQuebrada = hora.split(":"); //0 = Hora, 1 = Minuto
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DATE, dia);
+        calendar.set(Calendar.MONTH, mes);
+        calendar.set(Calendar.YEAR, ano);
+        calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(horaQuebrada[0]));
+        calendar.set(Calendar.MINUTE, Integer.parseInt(horaQuebrada[1]));
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
 
         criarCanalNotificacao(context);
-        configurarAlarme(context);
+        configurarAlarme(context, calendar);
     }
 }

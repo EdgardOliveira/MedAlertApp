@@ -1,6 +1,8 @@
 package br.com.technologies.venom.medalertapp.services;
 
 import br.com.technologies.venom.medalertapp.models.ConsultasResp;
+import br.com.technologies.venom.medalertapp.models.Gerenciamento;
+import br.com.technologies.venom.medalertapp.models.GerenciamentoResp;
 import br.com.technologies.venom.medalertapp.models.MedicamentoDetalheResp;
 import br.com.technologies.venom.medalertapp.models.Usuario;
 import br.com.technologies.venom.medalertapp.models.UsuarioResp;
@@ -31,5 +33,13 @@ public interface RESTService {
     Call<MedicamentoDetalheResp> consultarMedicamento(
             @Header("Authorization") String token,
             @Path("codigo") String gtin
+    );
+
+    //Cadastrar um gerenciamento de medicação
+    @Headers({"Content-Type:application/json; charset=utf-8"})
+    @POST("gerenciamentos")
+    Call<GerenciamentoResp> cadastrarGerenciamento(
+            @Header("Authorization") String token,
+            @Body Gerenciamento gerenciamento
     );
 }
